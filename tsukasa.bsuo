@@ -41,6 +41,11 @@
       <Line>415</Line>
       <Enable>1</Enable>
     </BreakPoint>
+    <BreakPoint>
+      <File>_Org\gSmxNyu.src</File>
+      <Line>68</Line>
+      <Enable>1</Enable>
+    </BreakPoint>
   </BreakPointInformation>
   <WatchInformation>
     <Watch>
@@ -49,7 +54,19 @@
     <Watch>
       <Name>cmd$</Name>
     </Watch>
+    <Watch>
+      <Name>Split.count</Name>
+    </Watch>
+    <Watch>
+      <Name>Split.item$</Name>
+    </Watch>
   </WatchInformation>
+  <OpenFileInformation>
+    <OpenInfo>
+      <FileName>_Org\gSmxNyu.src</FileName>
+      <EditorType>0</EditorType>
+    </OpenInfo>
+  </OpenFileInformation>
   <SolutionExpand>
     <ProjectExpands>
       <ProjectExpand>

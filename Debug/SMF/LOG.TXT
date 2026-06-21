@@ -1,226 +1,170 @@
-25/12/13,14:27:06,szk.Open,start<                                               
-25/12/13,14:27:06,szk.Close,start<                                              
-25/12/13,14:27:06,BtPt208Init,start<                                            
-25/12/13,14:27:06,Lbl.Open,P00.dat<                                             
-25/12/13,14:27:06,Lbl.Open result, 0(0x0)                                       
-25/12/13,14:27:06,main syori$,LIVE<                                             
-25/12/13,14:27:07,FD_ZERO,socket18<                                             
-25/12/13,14:27:07,FD_SET,socket19<                                              
-25/12/13,14:27:07,select(),socket17<                                            
-25/12/13,14:27:07,Sock.Send:ETC;ƒAƒ“ƒeƒiŒÌá,Err:0x107 Erl:0x5A7F<              
-25/12/13,14:27:07,select(),ƒŠƒgƒ‰ƒC= 1<                                         
-25/12/13,14:27:07,FD_ZERO,socket18<                                             
-25/12/13,14:27:07,FD_SET,socket19<                                              
-25/12/13,14:27:07,select(),socket17<                                            
-25/12/13,14:27:07,Sock.Send:ETC;ƒAƒ“ƒeƒiŒÌá,Err:0x107 Erl:0x5A7F<              
-25/12/13,14:27:07,select(),ƒŠƒgƒ‰ƒC= 2<                                         
-25/12/13,14:27:07,FD_ZERO,socket18<                                             
-25/12/13,14:27:07,FD_SET,socket19<                                              
-25/12/13,14:27:07,select(),socket17<                                            
-25/12/13,14:27:07,Sock.Send:ETC;ƒAƒ“ƒeƒiŒÌá,Err:0x107 Erl:0x5A7F<              
-25/12/13,14:27:07,select(),ƒŠƒgƒ‰ƒC= 3<                                         
-25/12/13,14:27:07,FD_ZERO,socket18<                                             
-25/12/13,14:27:07,FD_SET,socket19<                                              
-25/12/13,14:27:07,select(),socket17<                                            
-25/12/13,14:27:07,Sock.Send:ETC;ƒAƒ“ƒeƒiŒÌá,Err:0x107 Erl:0x5A7F<              
-25/12/13,14:27:07,select(),Error<                                               
-25/12/13,14:27:07,Sock.Send,select<                                             
-25/12/13,14:27:07,shutdown,socket25<                                            
-25/12/13,14:27:07,Sock.discon,Err:0x107 Erl:0x588E<                             
-25/12/13,14:27:07,close,socket28<                                               
-25/12/13,14:27:07,Sock.discon,Err:0x107 Erl:0x58C4<                             
-25/12/13,14:27:07,’ÊMŒo˜H‚ÌØ’f,socket43<                                      
-25/12/13,14:27:07,Sock.discon,Err:0x104 Erl:0x5900<                             
-25/12/13,14:27:07,Sock.Discon,<                                                 
-25/12/13,14:27:07,com3.fnm$,COM3:<                                              
-25/12/13,14:27:07,“¯Šúƒ`ƒFƒbƒN,192.168.1.30/ 22222<                             
-25/12/13,14:27:07,Sock.Sync,ŠJn<                                               
-25/12/13,14:27:07,Sock.Sync, 0<                                                 
-25/12/13,14:27:07,tcp/ip’ÊMŒo˜H,socket40<                                      
-25/12/13,14:27:07,tcp/ip’ÊMŒo˜H,socket41<                                      
-25/12/13,14:27:07,socket,socket26<                                              
-25/12/13,14:27:07,socket,socket24<                                              
-25/12/13,14:27:07,htonl, 22222<                                                 
-25/12/13,14:27:07,Sock.Svip$,192.168.1.30<                                      
-25/12/13,14:27:07,FD_ZERO,socket18<                                             
-25/12/13,14:27:07,FD_SET,socket19<                                              
-25/12/13,14:27:07,select(),socket17<                                            
-25/12/13,14:27:07,FD_ISSET,socket21<                                            
-25/12/13,14:27:07,Sock.Send,select<                                             
-25/12/13,14:27:07,Send,<                                                        
-25/12/13,14:27:07,FD_ZERO,socket18<                                             
-25/12/13,14:27:07,FD_SET,socket19<                                              
-25/12/13,14:27:07,select(),socket17<                                            
-25/12/13,14:27:07,FD_ISSET,socket21<                                            
-25/12/13,14:27:07,Recv,socket14<                                                
-25/12/13,14:27:07,RECVDATA,0^ƒVƒXƒeƒ€<                                         
-25/12/13,14:27:07,main syori$,MENU<                                             
-25/12/13,14:27:16,main syori$,İŒÉ’I‰µ<                                         
-25/12/13,14:27:17,FD_ZERO,socket18<                                             
-25/12/13,14:27:17,FD_SET,socket19<                                              
-25/12/13,14:27:17,select(),socket17<                                            
-25/12/13,14:27:17,FD_ISSET,socket21<                                            
-25/12/13,14:27:17,Sock.Send,select<                                             
-25/12/13,14:27:17,Send,<                                                        
-25/12/13,14:27:17,FD_ZERO,socket18<                                             
-25/12/13,14:27:17,FD_SET,socket19<                                              
-25/12/13,14:27:17,select(),socket17<                                            
-25/12/13,14:27:17,FD_ISSET,socket21<                                            
-25/12/13,14:27:17,Recv,socket14<                                                
-25/12/13,14:27:17,RECVDATA,0^ƒVƒXƒeƒ€<                                         
-25/12/13,14:27:20,FD_ZERO,socket18<                                             
-25/12/13,14:27:20,FD_SET,socket19<                                              
-25/12/13,14:27:20,select(),socket17<                                            
-25/12/13,14:27:20,FD_ISSET,socket21<                                            
-25/12/13,14:27:20,Sock.Send,select<                                             
-25/12/13,14:27:20,Send,<                                                        
-25/12/13,14:27:20,FD_ZERO,socket18<                                             
-25/12/13,14:27:20,FD_SET,socket19<                                              
-25/12/13,14:27:20,select(),socket17<                                            
-25/12/13,14:27:20,FD_ISSET,socket21<                                            
-25/12/13,14:27:20,Recv,socket14<                                                
-25/12/13,14:27:20,RECVDATA,0^ƒVƒXƒeƒ€<                                         
-25/12/13,14:27:21,FD_ZERO,socket18<                                             
-25/12/13,14:27:21,FD_SET,socket19<                                              
-25/12/13,14:27:21,select(),socket17<                                            
-25/12/13,14:27:22,FD_ISSET,socket21<                                            
-25/12/13,14:27:22,Sock.Send,select<                                             
-25/12/13,14:27:22,Send,<                                                        
-25/12/13,14:27:22,FD_ZERO,socket18<                                             
-25/12/13,14:27:22,FD_SET,socket19<                                              
-25/12/13,14:27:22,select(),socket17<                                            
-25/12/13,14:27:22,FD_ISSET,socket21<                                            
-25/12/13,14:27:22,Recv,socket14<                                                
-25/12/13,14:27:22,RECVDATA,0^ƒVƒXƒeƒ€<                                         
-25/12/13,14:27:23,FD_ZERO,socket18<                                             
-25/12/13,14:27:23,FD_SET,socket19<                                              
-25/12/13,14:27:23,select(),socket17<                                            
-25/12/13,14:27:23,FD_ISSET,socket21<                                            
-25/12/13,14:27:23,Sock.Send,select<                                             
-25/12/13,14:27:23,Send,<                                                        
-25/12/13,14:27:23,FD_ZERO,socket18<                                             
-25/12/13,14:27:23,FD_SET,socket19<                                              
-25/12/13,14:27:23,select(),socket17<                                            
-25/12/13,14:27:23,FD_ISSET,socket21<                                            
-25/12/13,14:27:23,Recv,socket14<                                                
-25/12/13,14:27:23,RECVDATA,0^ƒVƒXƒeƒ€<                                         
-25/12/13,14:27:26,FD_ZERO,socket18<                                             
-25/12/13,14:27:26,FD_SET,socket19<                                              
-25/12/13,14:27:26,select(),socket17<                                            
-25/12/13,14:27:26,FD_ISSET,socket21<                                            
-25/12/13,14:27:26,Sock.Send,select<                                             
-25/12/13,14:27:26,Send,<                                                        
-25/12/13,14:27:26,FD_ZERO,socket18<                                             
-25/12/13,14:27:26,FD_SET,socket19<                                              
-25/12/13,14:27:26,select(),socket17<                                            
-25/12/13,14:27:26,FD_ISSET,socket21<                                            
-25/12/13,14:27:26,Recv,socket14<                                                
-25/12/13,14:27:26,RECVDATA,0^ƒVƒXƒeƒ€<                                         
-25/12/13,14:27:27,FD_ZERO,socket18<                                             
-25/12/13,14:27:27,FD_SET,socket19<                                              
-25/12/13,14:27:27,select(),socket17<                                            
-25/12/13,14:27:27,FD_ISSET,socket21<                                            
-25/12/13,14:27:27,Sock.Send,select<                                             
-25/12/13,14:27:27,Send,<                                                        
-25/12/13,14:27:27,FD_ZERO,socket18<                                             
-25/12/13,14:27:27,FD_SET,socket19<                                              
-25/12/13,14:27:27,select(),socket17<                                            
-25/12/13,14:27:27,FD_ISSET,socket21<                                            
-25/12/13,14:27:27,Recv,socket14<                                                
-25/12/13,14:27:27,RECVDATA,0^ƒVƒXƒeƒ€<                                         
-25/12/13,14:27:32,FD_ZERO,socket18<                                             
-25/12/13,14:27:32,FD_SET,socket19<                                              
-25/12/13,14:27:32,select(),socket17<                                            
-25/12/13,14:27:32,FD_ISSET,socket21<                                            
-25/12/13,14:27:32,Sock.Send,select<                                             
-25/12/13,14:27:32,Send,<                                                        
-25/12/13,14:27:32,FD_ZERO,socket18<                                             
-25/12/13,14:27:32,FD_SET,socket19<                                              
-25/12/13,14:27:32,select(),socket17<                                            
-25/12/13,14:27:32,FD_ISSET,socket21<                                            
-25/12/13,14:27:32,Recv,socket14<                                                
-25/12/13,14:27:32,RECVDATA,0^ƒVƒXƒeƒ€<                                         
-25/12/13,14:27:33,FD_ZERO,socket18<                                             
-25/12/13,14:27:33,FD_SET,socket19<                                              
-25/12/13,14:27:33,select(),socket17<                                            
-25/12/13,14:27:33,FD_ISSET,socket21<                                            
-25/12/13,14:27:33,Sock.Send,select<                                             
-25/12/13,14:27:33,Send,<                                                        
-25/12/13,14:27:33,FD_ZERO,socket18<                                             
-25/12/13,14:27:33,FD_SET,socket19<                                              
-25/12/13,14:27:33,select(),socket17<                                            
-25/12/13,14:27:33,FD_ISSET,socket21<                                            
-25/12/13,14:27:33,Recv,socket14<                                                
-25/12/13,14:27:33,RECVDATA,0^ƒVƒXƒeƒ€<                                         
-25/12/13,14:27:40,FD_ZERO,socket18<                                             
-25/12/13,14:27:40,FD_SET,socket19<                                              
-25/12/13,14:27:40,select(),socket17<                                            
-25/12/13,14:27:40,FD_ISSET,socket21<                                            
-25/12/13,14:27:40,Sock.Send,select<                                             
-25/12/13,14:27:40,Send,<                                                        
-25/12/13,14:27:40,FD_ZERO,socket18<                                             
-25/12/13,14:27:40,FD_SET,socket19<                                              
-25/12/13,14:27:40,select(),socket17<                                            
-25/12/13,14:27:40,FD_ISSET,socket21<                                            
-25/12/13,14:27:40,Recv,socket14<                                                
-25/12/13,14:27:40,RECVDATA,0^ƒVƒXƒeƒ€<                                         
-25/12/13,14:27:43,main syori$,MENU<                                             
-25/12/13,14:28:03,main syori$,ƒf[ƒ^‘—M<                                       
-25/12/13,14:28:09,shutdown,socket25<                                            
-25/12/13,14:28:09,close,socket28<                                               
-25/12/13,14:28:09,’ÊMŒo˜H‚ÌØ’f,socket43<                                      
-25/12/13,14:28:09,Sock.Discon,<                                                 
-25/12/13,14:28:10,Sock.Sync,ŠJn<                                               
-25/12/13,14:28:10,Sock.Sync, 0<                                                 
-25/12/13,14:28:05,main syori$,LIVE<                                             
-25/12/13,14:28:05,FD_ZERO,socket18<                                             
-25/12/13,14:28:05,FD_SET,socket19<                                              
-25/12/13,14:28:05,select(),socket17<                                            
-25/12/13,14:28:05,Sock.Send:ETC;ƒAƒ“ƒeƒiŒÌá,Err:0x107 Erl:0x5A7F<              
-25/12/13,14:28:05,select(),ƒŠƒgƒ‰ƒC= 1<                                         
-25/12/13,14:28:05,FD_ZERO,socket18<                                             
-25/12/13,14:28:05,FD_SET,socket19<                                              
-25/12/13,14:28:05,select(),socket17<                                            
-25/12/13,14:28:05,Sock.Send:ETC;ƒAƒ“ƒeƒiŒÌá,Err:0x107 Erl:0x5A7F<              
-25/12/13,14:28:05,select(),ƒŠƒgƒ‰ƒC= 2<                                         
-25/12/13,14:28:05,FD_ZERO,socket18<                                             
-25/12/13,14:28:05,FD_SET,socket19<                                              
-25/12/13,14:28:05,select(),socket17<                                            
-25/12/13,14:28:05,Sock.Send:ETC;ƒAƒ“ƒeƒiŒÌá,Err:0x107 Erl:0x5A7F<              
-25/12/13,14:28:05,select(),ƒŠƒgƒ‰ƒC= 3<                                         
-25/12/13,14:28:05,FD_ZERO,socket18<                                             
-25/12/13,14:28:05,FD_SET,socket19<                                              
-25/12/13,14:28:05,select(),socket17<                                            
-25/12/13,14:28:05,Sock.Send:ETC;ƒAƒ“ƒeƒiŒÌá,Err:0x107 Erl:0x5A7F<              
-25/12/13,14:28:05,select(),Error<                                               
-25/12/13,14:28:05,Sock.Send,select<                                             
-25/12/13,14:28:05,shutdown,socket25<                                            
-25/12/13,14:28:05,Sock.discon,Err:0x107 Erl:0x588E<                             
-25/12/13,14:28:05,close,socket28<                                               
-25/12/13,14:28:05,Sock.discon,Err:0x107 Erl:0x58C4<                             
-25/12/13,14:28:05,’ÊMŒo˜H‚ÌØ’f,socket43<                                      
-25/12/13,14:28:05,Sock.discon,Err:0x104 Erl:0x5900<                             
-25/12/13,14:28:05,Sock.Discon,<                                                 
-25/12/13,14:28:05,com3.fnm$,COM3:<                                              
-25/12/13,14:28:05,“¯Šúƒ`ƒFƒbƒN,192.168.1.30/ 22222<                             
-25/12/13,14:28:05,Sock.Sync,ŠJn<                                               
-25/12/13,14:28:05,Sock.Sync, 0<                                                 
-25/12/13,14:28:05,tcp/ip’ÊMŒo˜H,socket40<                                      
-25/12/13,14:28:05,tcp/ip’ÊMŒo˜H,socket41<                                      
-25/12/13,14:28:05,socket,socket26<                                              
-25/12/13,14:28:05,socket,socket24<                                              
-25/12/13,14:28:05,htonl, 22222<                                                 
-25/12/13,14:28:05,Sock.Svip$,192.168.1.30<                                      
-25/12/13,14:28:06,FD_ZERO,socket18<                                             
-25/12/13,14:28:06,FD_SET,socket19<                                              
-25/12/13,14:28:06,select(),socket17<                                            
-25/12/13,14:28:06,FD_ISSET,socket21<                                            
-25/12/13,14:28:06,Sock.Send,select<                                             
-25/12/13,14:28:06,Send,<                                                        
-25/12/13,14:28:06,FD_ZERO,socket18<                                             
-25/12/13,14:28:06,FD_SET,socket19<                                              
-25/12/13,14:28:06,select(),socket17<                                            
-25/12/13,14:28:06,FD_ISSET,socket21<                                            
-25/12/13,14:28:06,Recv,socket14<                                                
-25/12/13,14:28:06,RECVDATA,0^ƒVƒXƒeƒ€<                                         
-25/12/13,14:28:13,main syori$,MENU<                                             
+26/06/21,21:44:47,szk.Open,start<                                               
+26/06/21,21:44:47,szk.Close,start<                                              
+26/06/21,21:44:47,BtPt208Init,start<                                            
+26/06/21,21:44:47,Lbl.Open,P00.dat<                                             
+26/06/21,21:44:47,Lbl.Open result, 0(0x0)                                       
+26/06/21,21:44:47,main syori$,LIVE<                                             
+26/06/21,21:44:48,FD_ZERO,socket18<                                             
+26/06/21,21:44:48,FD_SET,socket19<                                              
+26/06/21,21:44:48,select(),socket17<                                            
+26/06/21,21:44:48,Sock.Send:ETC;ƒAƒ“ƒeƒiŒÌá,Err:0x107 Erl:0x5A7F<              
+26/06/21,21:44:48,select(),ƒŠƒgƒ‰ƒC= 1<                                         
+26/06/21,21:44:48,FD_ZERO,socket18<                                             
+26/06/21,21:44:48,FD_SET,socket19<                                              
+26/06/21,21:44:48,select(),socket17<                                            
+26/06/21,21:44:48,Sock.Send:ETC;ƒAƒ“ƒeƒiŒÌá,Err:0x107 Erl:0x5A7F<              
+26/06/21,21:44:48,select(),ƒŠƒgƒ‰ƒC= 2<                                         
+26/06/21,21:44:48,FD_ZERO,socket18<                                             
+26/06/21,21:44:48,FD_SET,socket19<                                              
+26/06/21,21:44:48,select(),socket17<                                            
+26/06/21,21:44:48,Sock.Send:ETC;ƒAƒ“ƒeƒiŒÌá,Err:0x107 Erl:0x5A7F<              
+26/06/21,21:44:48,select(),ƒŠƒgƒ‰ƒC= 3<                                         
+26/06/21,21:44:48,FD_ZERO,socket18<                                             
+26/06/21,21:44:48,FD_SET,socket19<                                              
+26/06/21,21:44:48,select(),socket17<                                            
+26/06/21,21:44:48,Sock.Send:ETC;ƒAƒ“ƒeƒiŒÌá,Err:0x107 Erl:0x5A7F<              
+26/06/21,21:44:48,select(),Error<                                               
+26/06/21,21:44:48,Sock.Send,select<                                             
+26/06/21,21:44:48,shutdown,socket25<                                            
+26/06/21,21:44:48,Sock.discon,Err:0x107 Erl:0x588E<                             
+26/06/21,21:44:48,close,socket28<                                               
+26/06/21,21:44:48,Sock.discon,Err:0x107 Erl:0x58C4<                             
+26/06/21,21:44:48,’ÊMŒo˜H‚ÌØ’f,socket43<                                      
+26/06/21,21:44:48,Sock.discon,Err:0x104 Erl:0x5900<                             
+26/06/21,21:44:48,Sock.Discon,<                                                 
+26/06/21,21:44:48,com3.fnm$,COM3:<                                              
+26/06/21,21:44:48,“¯Šúƒ`ƒFƒbƒN,192.168.1.30/ 22222<                             
+26/06/21,21:44:48,Sock.Sync,ŠJn<                                               
+26/06/21,21:44:48,Sock.Sync, 0<                                                 
+26/06/21,21:44:48,tcp/ip’ÊMŒo˜H,socket40<                                      
+26/06/21,21:44:48,tcp/ip’ÊMŒo˜H,socket41<                                      
+26/06/21,21:44:48,socket,socket26<                                              
+26/06/21,21:44:48,socket,socket24<                                              
+26/06/21,21:44:48,htonl, 22222<                                                 
+26/06/21,21:44:48,Sock.Svip$,192.168.1.30<                                      
+26/06/21,21:44:48,FD_ZERO,socket18<                                             
+26/06/21,21:44:48,FD_SET,socket19<                                              
+26/06/21,21:44:48,select(),socket17<                                            
+26/06/21,21:44:48,FD_ISSET,socket21<                                            
+26/06/21,21:44:48,Sock.Send,select<                                             
+26/06/21,21:44:48,Send,<                                                        
+26/06/21,21:44:48,FD_ZERO,socket18<                                             
+26/06/21,21:44:48,FD_SET,socket19<                                              
+26/06/21,21:44:48,select(),socket17<                                            
+26/06/21,21:44:48,FD_ISSET,socket21<                                            
+26/06/21,21:44:48,Recv,socket14<                                                
+26/06/21,21:44:48,RECVDATA,0^ƒVƒXƒeƒ€<                                         
+26/06/21,21:44:48,main syori$,MENU<                                             
+26/06/21,21:44:57,main syori$,SMX“üŒÉ<                                          
+26/06/21,21:44:57,FD_ZERO,socket18<                                             
+26/06/21,21:44:57,FD_SET,socket19<                                              
+26/06/21,21:44:57,select(),socket17<                                            
+26/06/21,21:44:57,FD_ISSET,socket21<                                            
+26/06/21,21:44:57,Sock.Send,select<                                             
+26/06/21,21:44:57,Send,<                                                        
+26/06/21,21:44:57,FD_ZERO,socket18<                                             
+26/06/21,21:44:57,FD_SET,socket19<                                              
+26/06/21,21:44:57,select(),socket17<                                            
+26/06/21,21:44:57,FD_ISSET,socket21<                                            
+26/06/21,21:44:57,Recv,socket14<                                                
+26/06/21,21:44:57,RECVDATA,0^ƒVƒXƒeƒ€<                                         
+26/06/21,21:44:59,FD_ZERO,socket18<                                             
+26/06/21,21:44:59,FD_SET,socket19<                                              
+26/06/21,21:44:59,select(),socket17<                                            
+26/06/21,21:44:59,FD_ISSET,socket21<                                            
+26/06/21,21:44:59,Sock.Send,select<                                             
+26/06/21,21:44:59,Send,<                                                        
+26/06/21,21:44:59,FD_ZERO,socket18<                                             
+26/06/21,21:44:59,FD_SET,socket19<                                              
+26/06/21,21:44:59,select(),socket17<                                            
+26/06/21,21:44:59,FD_ISSET,socket21<                                            
+26/06/21,21:44:59,Recv,socket14<                                                
+26/06/21,21:44:59,RECVDATA,0^ƒVƒXƒeƒ€<                                         
+26/06/21,21:45:08,FD_ZERO,socket18<                                             
+26/06/21,21:45:08,FD_SET,socket19<                                              
+26/06/21,21:45:08,select(),socket17<                                            
+26/06/21,21:45:08,FD_ISSET,socket21<                                            
+26/06/21,21:45:08,Sock.Send,select<                                             
+26/06/21,21:45:08,Send,<                                                        
+26/06/21,21:45:08,FD_ZERO,socket18<                                             
+26/06/21,21:45:08,FD_SET,socket19<                                              
+26/06/21,21:45:08,select(),socket17<                                            
+26/06/21,21:45:08,FD_ISSET,socket21<                                            
+26/06/21,21:45:08,Recv,socket14<                                                
+26/06/21,21:45:08,RECVDATA,0^ƒVƒXƒeƒ€<                                         
+26/06/21,21:45:12,FD_ZERO,socket18<                                             
+26/06/21,21:45:12,FD_SET,socket19<                                              
+26/06/21,21:45:12,select(),socket17<                                            
+26/06/21,21:45:12,FD_ISSET,socket21<                                            
+26/06/21,21:45:12,Sock.Send,select<                                             
+26/06/21,21:45:12,Send,<                                                        
+26/06/21,21:45:12,FD_ZERO,socket18<                                             
+26/06/21,21:45:12,FD_SET,socket19<                                              
+26/06/21,21:45:12,select(),socket17<                                            
+26/06/21,21:45:12,FD_ISSET,socket21<                                            
+26/06/21,21:45:12,Recv,socket14<                                                
+26/06/21,21:45:12,RECVDATA,0^ƒVƒXƒeƒ€<                                         
+26/06/21,21:45:48,szk.Open,start<                                               
+26/06/21,21:45:48,szk.Close,start<                                              
+26/06/21,21:45:48,szk.Open,start<                                               
+26/06/21,21:45:48,szk.get, 1(0x1)                                               
+26/06/21,21:45:48,szk.get,SmxNyuItem^000001^26/06/21^21:45:48^A999^2018/10/25^10
+26/06/21,21:45:48,szk.Close,start<                                              
+26/06/21,21:45:48,FD_ZERO,socket18<                                             
+26/06/21,21:45:48,FD_SET,socket19<                                              
+26/06/21,21:45:48,select(),socket17<                                            
+26/06/21,21:45:48,FD_ISSET,socket21<                                            
+26/06/21,21:45:48,Sock.Send,select<                                             
+26/06/21,21:45:48,Send,<                                                        
+26/06/21,21:45:48,FD_ZERO,socket18<                                             
+26/06/21,21:45:48,FD_SET,socket19<                                              
+26/06/21,21:45:48,select(),socket17<                                            
+26/06/21,21:45:48,FD_ISSET,socket21<                                            
+26/06/21,21:45:48,Recv,socket14<                                                
+26/06/21,21:45:48,RECVDATA,9<                                                   
+26/06/21,21:45:48,szk.Open,start<                                               
+26/06/21,21:45:48,szk.Close,start<                                              
+26/06/21,21:46:01,FD_ZERO,socket18<                                             
+26/06/21,21:46:01,FD_SET,socket19<                                              
+26/06/21,21:46:01,select(),socket17<                                            
+26/06/21,21:46:01,FD_ISSET,socket21<                                            
+26/06/21,21:46:01,Sock.Send,select<                                             
+26/06/21,21:46:01,Send,<                                                        
+26/06/21,21:46:01,FD_ZERO,socket18<                                             
+26/06/21,21:46:01,FD_SET,socket19<                                              
+26/06/21,21:46:01,select(),socket17<                                            
+26/06/21,21:46:01,FD_ISSET,socket21<                                            
+26/06/21,21:46:01,Recv,socket14<                                                
+26/06/21,21:46:01,RECVDATA,0^ƒVƒXƒeƒ€<                                         
+26/06/21,21:46:22,szk.Open,start<                                               
+26/06/21,21:46:22,szk.Close,start<                                              
+26/06/21,21:46:22,szk.Open,start<                                               
+26/06/21,21:46:22,szk.get, 1(0x1)                                               
+26/06/21,21:46:22,szk.get,SmxNyuItem^000001^26/06/21^21:46:22^A999^2018/10/25^10
+26/06/21,21:46:22,szk.Close,start<                                              
+26/06/21,21:46:22,FD_ZERO,socket18<                                             
+26/06/21,21:46:22,FD_SET,socket19<                                              
+26/06/21,21:46:22,select(),socket17<                                            
+26/06/21,21:46:22,FD_ISSET,socket21<                                            
+26/06/21,21:46:22,Sock.Send,select<                                             
+26/06/21,21:46:22,Send,<                                                        
+26/06/21,21:46:22,FD_ZERO,socket18<                                             
+26/06/21,21:46:22,FD_SET,socket19<                                              
+26/06/21,21:46:22,select(),socket17<                                            
+26/06/21,21:46:22,FD_ISSET,socket21<                                            
+26/06/21,21:46:22,Recv,socket14<                                                
+26/06/21,21:46:22,RECVDATA,9<                                                   
+26/06/21,21:46:22,szk.Open,start<                                               
+26/06/21,21:46:22,szk.Close,start<                                              
+26/06/21,21:46:56,FD_ZERO,socket18<                                             
+26/06/21,21:46:56,FD_SET,socket19<                                              
+26/06/21,21:46:56,select(),socket17<                                            
+26/06/21,21:46:56,FD_ISSET,socket21<                                            
+26/06/21,21:46:56,Sock.Send,select<                                             
+26/06/21,21:46:56,Send,<                                                        
+26/06/21,21:46:56,FD_ZERO,socket18<                                             
+26/06/21,21:46:56,FD_SET,socket19<                                              
+26/06/21,21:46:56,select(),socket17<                                            
+26/06/21,21:46:56,FD_ISSET,socket21<                                            
+26/06/21,21:46:56,Recv,socket14<                                                
+26/06/21,21:46:56,RECVDATA,0^ƒVƒXƒeƒ€<                                         

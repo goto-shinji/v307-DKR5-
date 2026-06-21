@@ -5,192 +5,201 @@ COMMON SYMBOL
     CMMN$                          <GLOBAL_>                      369000
 
 WORK SYMBOL
-    A$                             <main->                        360054
+    A$                             <main->                        360058
     BT.ADDR$                       <main->                        36B001
     BT.NUM%                        <main->                        310008
-    CHK.DST$                       <main->                        360084
-    CHK.SRC$                       <main->                        36007B
-    CLSID$                         <GLOBAL_>                      360044
-    COM.MSG$                       <GLOBAL_>                      36007C
+    CHK.DST$                       <main->                        36008D
+    CHK.SRC$                       <main->                        360084
+    CLSID$                         <GLOBAL_>                      360047
+    COM.MSG$                       <GLOBAL_>                      360085
     DAT.COUNT                      <GLOBAL_>                      330007
-    DAT.REC$                       <GLOBAL_>                      360016
+    DAT.REC$                       <GLOBAL_>                      360019
     DBG.COUNT                      <GLOBAL_>                      330001
-    DBG.FLAG$                      <GLOBAL_>                      360031
-    DBG.TXT$                       <GLOBAL_>                      360028
+    DBG.FLAG$                      <GLOBAL_>                      360034
+    DBG.TXT$                       <GLOBAL_>                      36002B
     DEFLAGCNT                      <main->                        33000C
     DQR.DST$                       <PUBLIC_>                      360001
     DQR.ERRMSG$                    <PUBLIC_>                      360000
     FTP.COM%                       <main->                        310009
     FTP.HNDL%                      <main->                        310007
     FTP.INTERFACE%                 <main->                        310003
-    GBW.ADDR$                      <main->                        36006F
+    GBW.ADDR$                      <main->                        360077
     GMENU.CSR                      <main->                        330000
-    GQR.HNO$                       <GLOBAL_>                      360022
-    GQR.RNO$                       <GLOBAL_>                      36003E
-    GQR.SNM$                       <GLOBAL_>                      360037
+    GQR.HNO$                       <GLOBAL_>                      360025
+    GQR.RNO$                       <GLOBAL_>                      360041
+    GQR.SNM$                       <GLOBAL_>                      36003A
     GQR.SUM                        <GLOBAL_>                      33000B
-    GQR.SUM$                       <GLOBAL_>                      360039
-    GQR.TYPE$                      <GLOBAL_>                      36003C
-    GQR.ZNO$                       <GLOBAL_>                      36005D
-    GQR.ZRO$                       <GLOBAL_>                      36005E
-    GT1.GQR$                       <main->                        360035
-    GT1.JDG$                       <main->                        360023
-    GT1.MSG$                       <main->                        36002B
-    GT1.NDT$                       <main->                        360056
-    GT1.PQR$                       <main->                        360058
-    GT1.SNM$                       <main->                        360050
-    GT1.SNO$                       <main->                        360057
-    GT1.SUU$                       <main->                        360071
-    GT1.ZNO$                       <main->                        360073
-    GT2.DAT$                       <main->                        360034
-    GT2.DT$                        <main->                        360060
-    GT2.JDG$                       <main->                        360024
-    GT2.MST$                       <main->                        360059
-    GT2.QRHNO$                     <main->                        36003D
-    GT2.QRSNM$                     <main->                        360061
+    GQR.SUM$                       <GLOBAL_>                      36003C
+    GQR.TYPE$                      <GLOBAL_>                      36003F
+    GQR.ZNO$                       <GLOBAL_>                      360061
+    GQR.ZRO$                       <GLOBAL_>                      360062
+    GT1.GQR$                       <main->                        360038
+    GT1.JDG$                       <main->                        360026
+    GT1.MSG$                       <main->                        36002E
+    GT1.NDT$                       <main->                        36005A
+    GT1.PQR$                       <main->                        36005C
+    GT1.SNM$                       <main->                        360054
+    GT1.SNO$                       <main->                        36005B
+    GT1.SUU$                       <main->                        36007A
+    GT1.ZNO$                       <main->                        36007C
+    GT2.DAT$                       <main->                        360037
+    GT2.DT$                        <main->                        360065
+    GT2.JDG$                       <main->                        360027
+    GT2.MST$                       <main->                        36005D
+    GT2.QRHNO$                     <main->                        360040
+    GT2.QRSNM$                     <main->                        360066
     GT2.QRSUM                      <main->                        330016
-    GT2.QRSUM$                     <main->                        360062
-    GT2.QRZRO$                     <main->                        36007D
-    GT2.TM$                        <main->                        360011
-    GT2.ZNO$                       <main->                        360075
-    GT3.DAT$                       <main->                        36003A
-    GT3.JDG$                       <main->                        360026
-    GT3.MST$                       <main->                        36005F
-    GT3.QRHNO$                     <main->                        360040
-    GT3.QRSNM$                     <main->                        360065
+    GT2.QRSUM$                     <main->                        360067
+    GT2.QRZRO$                     <main->                        360086
+    GT2.TM$                        <main->                        360014
+    GT2.ZNO$                       <main->                        36007E
+    GT3.DAT$                       <main->                        36003D
+    GT3.JDG$                       <main->                        360029
+    GT3.MST$                       <main->                        360064
+    GT3.QRHNO$                     <main->                        360043
+    GT3.QRSNM$                     <main->                        36006B
     GT3.QRSUM                      <main->                        330019
-    GT3.QRSUM$                     <main->                        360066
-    GT3.QRZRO$                     <main->                        360081
-    GT3.ZNO$                       <main->                        360078
-    GTN.ERR$                       <main->                        360015
-    GTN.GQR$                       <main->                        36001A
-    GTN.SCD$                       <main->                        360014
-    GTN.SNM$                       <main->                        36002D
-    ISTIME.HH$                     <GLOBAL_>                      360036
-    ISTIME.MM$                     <GLOBAL_>                      36004B
+    GT3.QRSUM$                     <main->                        36006C
+    GT3.QRZRO$                     <main->                        36008A
+    GT3.ZNO$                       <main->                        360081
+    GTN.ERR$                       <main->                        360018
+    GTN.GQR$                       <main->                        36001D
+    GTN.SCD$                       <main->                        360017
+    GTN.SNM$                       <main->                        360030
+    ISTIME.HH$                     <GLOBAL_>                      360039
+    ISTIME.MM$                     <GLOBAL_>                      36004F
     KSI.COUNT                      <GLOBAL_>                      330005
-    KSI.KBN$                       <GLOBAL_>                      360018
-    KSI.KOZ$                       <GLOBAL_>                      360038
-    KSI.NAM$                       <GLOBAL_>                      36001D
-    KSI.OYZ$                       <GLOBAL_>                      36004A
-    KSI.SUU$                       <GLOBAL_>                      360048
-    KSI.YBI$                       <GLOBAL_>                      360030
+    KSI.KBN$                       <GLOBAL_>                      36001B
+    KSI.KOZ$                       <GLOBAL_>                      36003B
+    KSI.NAM$                       <GLOBAL_>                      360020
+    KSI.OYZ$                       <GLOBAL_>                      36004E
+    KSI.SUU$                       <GLOBAL_>                      36004C
+    KSI.YBI$                       <GLOBAL_>                      360033
     KSW.COUNT                      <GLOBAL_>                      330011
-    KSW.KBN$                       <GLOBAL_>                      360041
-    KSW.KOZ$                       <GLOBAL_>                      36006E
-    KSW.NAM$                       <GLOBAL_>                      360049
-    KSW.OYZ$                       <GLOBAL_>                      360079
-    KSW.SUU$                       <GLOBAL_>                      360077
-    KSW.YBI$                       <GLOBAL_>                      360067
-    LBL.CMD$                       <GLOBAL_>                      36006C
+    KSW.KBN$                       <GLOBAL_>                      360044
+    KSW.KOZ$                       <GLOBAL_>                      360076
+    KSW.NAM$                       <GLOBAL_>                      36004D
+    KSW.OYZ$                       <GLOBAL_>                      360082
+    KSW.SUU$                       <GLOBAL_>                      360080
+    KSW.YBI$                       <GLOBAL_>                      36006E
+    LBL.CMD$                       <GLOBAL_>                      360073
     LBL.COUNT                      <GLOBAL_>                      330008
     LBL.CTL$                       <GLOBAL_>                      360002
-    LBL.FNM$                       <GLOBAL_>                      360010
-    NIP.BCD$                       <GLOBAL_>                      36007A
-    NIP.DAN$                       <GLOBAL_>                      360020
-    NIP.ETM$                       <GLOBAL_>                      360021
-    NIP.HCD$                       <GLOBAL_>                      36000C
-    NIP.KCD$                       <GLOBAL_>                      360017
-    NIP.SCD$                       <GLOBAL_>                      36002C
-    NIP.SEQ$                       <GLOBAL_>                      36005B
-    NIP.STM$                       <GLOBAL_>                      36004D
-    NIP.SUU$                       <GLOBAL_>                      36006B
+    LBL.FNM$                       <GLOBAL_>                      360013
+    NIP.BCD$                       <GLOBAL_>                      360083
+    NIP.DAN$                       <GLOBAL_>                      360023
+    NIP.ETM$                       <GLOBAL_>                      360024
+    NIP.HCD$                       <GLOBAL_>                      36000E
+    NIP.KCD$                       <GLOBAL_>                      36001A
+    NIP.SCD$                       <GLOBAL_>                      36002F
+    NIP.SEQ$                       <GLOBAL_>                      36005F
+    NIP.STM$                       <GLOBAL_>                      360051
+    NIP.SUU$                       <GLOBAL_>                      360072
     PAGE                           <main->                        33001D
-    PCK.ERRMSG$                    <main->                        360027
-    PCK.SAKICD$                    <GLOBAL_>                      36000B
+    PCK.ERRMSG$                    <main->                        36002A
+    PCK.SAKICD$                    <GLOBAL_>                      36000D
     PCK.ZANLST$                    <main->                        36B007
     PCW.COUNT                      <GLOBAL_>                      33001A
-    PCW.KBN$                       <GLOBAL_>                      360052
+    PCW.KBN$                       <GLOBAL_>                      360056
     PCW.KOSEICNT                   <GLOBAL_>                      330010
-    PCW.KOSEIOYZ$                  <GLOBAL_>                      36002A
-    PCW.KOZ$                       <GLOBAL_>                      36007F
-    PCW.NAM$                       <GLOBAL_>                      36005A
-    PCW.OYZ$                       <GLOBAL_>                      360006
-    PCW.SC1$                       <GLOBAL_>                      36000F
-    PCW.SC2$                       <GLOBAL_>                      360013
-    PCW.SUU$                       <GLOBAL_>                      360003
-    PCW.ZIK$                       <GLOBAL_>                      36007E
-    PGW.DESC$                      <main->                        36003F
-    PGW.FUNC$                      <main->                        360033
+    PCW.KOSEIOYZ$                  <GLOBAL_>                      36002D
+    PCW.KOZ$                       <GLOBAL_>                      360088
+    PCW.NAM$                       <GLOBAL_>                      36005E
+    PCW.OYZ$                       <GLOBAL_>                      360008
+    PCW.SC1$                       <GLOBAL_>                      360012
+    PCW.SC2$                       <GLOBAL_>                      360016
+    PCW.SUU$                       <GLOBAL_>                      360005
+    PCW.ZIK$                       <GLOBAL_>                      360087
+    PGW.DESC$                      <main->                        360042
+    PGW.FUNC$                      <main->                        360036
     PGW.ITEMCNT                    <main->                        330003
     PGW.ITEMS$                     <main->                        36B003
     PGW.LEN                        <main->                        330012
     PGW.LNO                        <main->                        330015
     PGW.MAX                        <main->                        330020
     PGW.MIN                        <main->                        330014
-    PGW.NAME$                      <main->                        36004E
+    PGW.NAME$                      <main->                        360052
     PGW.NOTE                       <main->                        33001F
     PGW.NOWPAGE                    <main->                        330006
     PGW.PAGE                       <main->                        33000F
     PGW.SNO                        <main->                        33001E
-    PGW.STS$                       <main->                        360083
-    PGW.TITLE$                     <main->                        36006A
+    PGW.STS$                       <main->                        36008C
+    PGW.TITLE$                     <main->                        360071
     QR.DATA$                       <GLOBAL_>                      368000
     QR.DATACOUNT                   <GLOBAL_>                      330002
-    RECVDATA$                      <GLOBAL_>                      36000A
+    RECVDATA$                      <GLOBAL_>                      36000C
     RET                            <main->                        330004
-    RET$                           <main->                        36001B
-    SCANDATA$                      <GLOBAL_>                      360008
-    SCANMARK$                      <GLOBAL_>                      36001F
-    SCANSIGN$                      <GLOBAL_>                      36000E
+    RET$                           <main->                        36001E
+    SCANDATA$                      <GLOBAL_>                      36000A
+    SCANMARK$                      <GLOBAL_>                      360022
+    SCANSIGN$                      <GLOBAL_>                      360011
     SCKT.RECV$                     <GLOBAL_>                      368005
     SCR.WIDTH%                     <GLOBAL_>                      310004
-    SMX.ANO$                       <main->                        360042
-    SMX.JNO$                       <main->                        360068
-    SMX.SCD$                       <main->                        36005C
-    SMX.SUU$                       <main->                        360012
-    SOC.MSG$                       <main->                        36000D
+    SMX.ANO$                       <main->                        360045
+    SMX.CD1$                       <main->                        360074
+    SMX.CD2$                       <main->                        360079
+    SMX.DST$                       <main->                        360069
+    SMX.JNO$                       <main->                        36006F
+    SMX.NAME$                      <main->                        360063
+    SMX.NYUTYPE$                   <main->                        360003
+    SMX.ORGSUU$                    <main->                        36006D
+    SMX.PROCDT$                    <main->                        360048
+    SMX.SCD$                       <main->                        360060
+    SMX.SEQ$                       <main->                        360004
+    SMX.SUU$                       <main->                        360015
+    SMX.WASH$                      <main->                        360010
+    SOC.MSG$                       <main->                        36000F
     SOC.RETRYCNT                   <main->                        33001C
-    SOC.STS$                       <main->                        360046
+    SOC.STS$                       <main->                        36004A
     SOCK.INTERFACE%                <GLOBAL_>                      310002
-    SOCK.PARAM$                    <GLOBAL_>                      360064
+    SOCK.PARAM$                    <GLOBAL_>                      36006A
     SOCK.PORT%                     <GLOBAL_>                      310005
     SOCK.RECV.ITEMCOUNT            <GLOBAL_>                      33000E
     SOCK.RECV.ITEMS$               <GLOBAL_>                      368006
-    SOCK.SVIP$                     <GLOBAL_>                      360063
+    SOCK.SVIP$                     <GLOBAL_>                      360068
     SOCKFD%                        <GLOBAL_>                      310001
     SPLIT.COUNT                    <GLOBAL_>                      330013
     SPLIT.ITEM$                    <GLOBAL_>                      368002
     ST.ITEMS$                      <GLOBAL_>                      368008
-    ST.MESSAGE$                    <main->                        36002F
+    ST.MESSAGE$                    <main->                        360032
     STRING$                        <main->                        368004
     STRINGN%                       <main->                        310006
     STRLEN                         <main->                        338000
-    STS.BHT$                       <GLOBAL_>                      360045
+    STS.BHT$                       <GLOBAL_>                      360049
     STS.COUNT                      <GLOBAL_>                      330017
-    STS.DSC$                       <GLOBAL_>                      360019
-    STS.KEY$                       <GLOBAL_>                      360076
-    STS.PREFIX$                    <GLOBAL_>                      360025
-    STS.VAL$                       <GLOBAL_>                      360072
-    SYA.CD$                        <main->                        36002E
-    SYA.DT$                        <main->                        360032
-    SYA.MSG$                       <main->                        360004
-    SYORI$                         <main->                        360082
-    SYSBHT$                        <GLOBAL_>                      36003B
-    SYSKISYU$                      <GLOBAL_>                      360069
+    STS.DSC$                       <GLOBAL_>                      36001C
+    STS.KEY$                       <GLOBAL_>                      36007F
+    STS.PREFIX$                    <GLOBAL_>                      360028
+    STS.VAL$                       <GLOBAL_>                      36007B
+    SYA.CD$                        <main->                        360031
+    SYA.DT$                        <main->                        360035
+    SYA.MSG$                       <main->                        360006
+    SYORI$                         <main->                        36008B
+    SYSBHT$                        <GLOBAL_>                      36003E
+    SYSKISYU$                      <GLOBAL_>                      360070
     SYSWIFI                        <GLOBAL_>                      33000A
     SZK.COUNT                      <GLOBAL_>                      33000D
-    SZK.REC$                       <GLOBAL_>                      360029
+    SZK.REC$                       <GLOBAL_>                      36002C
     TMF.COUNT                      <GLOBAL_>                      330009
-    TMF.REC$                       <GLOBAL_>                      36001C
-    ZCHG.RIYU$                     <main->                        36006D
+    TMF.REC$                       <GLOBAL_>                      36001F
+    ZCHG.RIYU$                     <main->                        360075
     ZKSOC.RESULT                   <GLOBAL_>                      330018
     ZKSOC.ZIKSU                    <GLOBAL_>                      330021
-    ZKSOC.ZIKSU$                   <GLOBAL_>                      360080
-    ZTN.BHT$                       <GLOBAL_>                      36004C
+    ZKSOC.ZIKSU$                   <GLOBAL_>                      360089
+    ZTN.BHT$                       <GLOBAL_>                      360050
     ZTN.COUNT                      <GLOBAL_>                      33001B
-    ZTN.DNO$                       <GLOBAL_>                      360043
-    ZTN.KBN$                       <GLOBAL_>                      360055
-    ZTN.MSG$                       <GLOBAL_>                      360047
-    ZTN.NAME$                      <GLOBAL_>                      360051
-    ZTN.RNO$                       <GLOBAL_>                      360074
-    ZTN.SCD$                       <GLOBAL_>                      36004F
-    ZTN.SUU$                       <GLOBAL_>                      360007
-    ZTN.TCD$                       <GLOBAL_>                      360053
-    ZTN.TM$                        <GLOBAL_>                      360070
-    ZTN.VER$                       <GLOBAL_>                      360005
-    ZTN.ZNO$                       <GLOBAL_>                      360009
-    ZTN.ZRU$                       <GLOBAL_>                      36001E
+    ZTN.DNO$                       <GLOBAL_>                      360046
+    ZTN.KBN$                       <GLOBAL_>                      360059
+    ZTN.MSG$                       <GLOBAL_>                      36004B
+    ZTN.NAME$                      <GLOBAL_>                      360055
+    ZTN.RNO$                       <GLOBAL_>                      36007D
+    ZTN.SCD$                       <GLOBAL_>                      360053
+    ZTN.SUU$                       <GLOBAL_>                      360009
+    ZTN.TCD$                       <GLOBAL_>                      360057
+    ZTN.TM$                        <GLOBAL_>                      360078
+    ZTN.VER$                       <GLOBAL_>                      360007
+    ZTN.ZNO$                       <GLOBAL_>                      36000B
+    ZTN.ZRU$                       <GLOBAL_>                      360021
 
 LOCAL SYMBOL
     A$                             <DBG.DISP>                     462803
@@ -220,7 +229,6 @@ LOCAL SYMBOL
     BUF$                           <DNIPTM>                       462801
     BUF$                           <DPIKNG>                       462803
     BUF$                           <DPIKSUU>                      462804
-    BUF$                           <DSMXNYU>                      462804
     BUF$                           <DSMXSYU>                      462804
     BUF$                           <DSYUKA>                       462802
     BUF$                           <DYMDNYU>                      462804
@@ -245,7 +253,7 @@ LOCAL SYMBOL
     C$                             <GPIKNG$>                      462803
     C$                             <GPIKSUU$>                     462803
     C$                             <GRCV1$>                       462804
-    C$                             <GSMXNYU$>                     462803
+    C$                             <GSMXNYU$>                     462802
     C$                             <GSMXSYU$>                     462803
     C$                             <GSND0$>                       462802
     C$                             <GSYACD$>                      462803
@@ -267,6 +275,7 @@ LOCAL SYMBOL
     C$                             <ST.FL2PR>                     46280A
     C$                             <YMD.CODE$>                    462804
     CD$                            <YMD.CODE$>                    460801
+    CHILD$                         <SOC.SMXNYU>                   460805
     CLNT.FNAME$                    <FTP.DOWNLOAD>                 460801
     CLNT.FNAME$                    <FTP.UPLOAD>                   460802
     CLR                            <DPRINT>                       430802
@@ -345,6 +354,7 @@ LOCAL SYMBOL
     DST$                           <HAN2ZEN$>                     462803
     DST$                           <MOD10W3CHK>                   462802
     DST$                           <PCK.SCANSAKI>                 462805
+    DST$                           <SOC.SMXNYU>                   460803
     DST$                           <SOC.YMDSEND>                  46280C
     DT$                            <CHKDATE>                      460801
     DT$                            <DATEDEC$>                     460801
@@ -432,7 +442,7 @@ LOCAL SYMBOL
     JDG$                           <DZKINQ>                       460802
     JDG$                           <DZKNY>                        460802
     JDG$                           <DZKTN>                        460802
-    JDG$                           <GSMXNYU$>                     462804
+    JDG$                           <GSMXNYU$>                     462803
     JDG$                           <GSMXSYU$>                     462804
     JDG$                           <GYMDNYU$>                     462804
     JDG$                           <GZKCHG$>                      462804
@@ -568,6 +578,7 @@ LOCAL SYMBOL
     NEWPRT$                        <BTCHECK>                      462806
     NM$                            <SOC.RIYU>                     460801
     NM$                            <SOC.SEND>                     460801
+    NM$                            <SOC.SMXNYU>                   460801
     NM$                            <SOC.SMXZAIKO>                 460801
     NM$                            <SOC.YMDSEND>                  460801
     NM$                            <SOC.YMDZAIKO>                 460801
@@ -609,6 +620,7 @@ LOCAL SYMBOL
     PARA%                          <SOCK.IP>                      412804
     PARA%                          <SS.SETINT>                    412803
     PARA%                          <SS.SETSTR>                    412803
+    PARENT$                        <SOC.SMXNYU>                   460808
     PKEYS$                         <SCANKEY$>                     460805
     PO                             <ISNUM>                        432804
     PREFIX$                        <STS.INIT>                     460801
@@ -621,6 +633,7 @@ LOCAL SYMBOL
     PRTSTS$                        <ST.FL2PR>                     46280E
     PRTSTS$                        <ST.RECV2STS>                  462803
     QR$                            <GETQR>                        460801
+    QR$                            <SOC.SMXNYU>                   460802
     RCVDATA$                       <ST.RECV2STS>                  460801
     READFDSET$                     <SOCK.SELECT>                  462802
     REC$                           <BTPT208INIT>                  462803
@@ -678,6 +691,7 @@ LOCAL SYMBOL
     RESULT                         <EXEC.SRCH>                    432809
     RESULT                         <FILECHK>                      432802
     RESULT                         <LBL.OPEN>                     432802
+    RESULT                         <SMX.NYUITEM>                  432801
     RESULT                         <SOC.LIVE>                     432801
     RESULT                         <SOC.RIYU>                     432803
     RESULT                         <SOC.SEND>                     432809
@@ -699,7 +713,6 @@ LOCAL SYMBOL
     RESULT$                        <GPIKNG$>                      462801
     RESULT$                        <GPIKSUU$>                     462801
     RESULT$                        <GPSET$>                       462802
-    RESULT$                        <GSMXNYU$>                     462801
     RESULT$                        <GSMXSYU$>                     462801
     RESULT$                        <GSYACD$>                      462801
     RESULT$                        <GSYUKA$>                      462801
@@ -733,7 +746,7 @@ LOCAL SYMBOL
     RET                            <GPIKSUU$>                     432804
     RET                            <GPSET$>                       432807
     RET                            <GRCV1$>                       432805
-    RET                            <GSMXNYU$>                     432805
+    RET                            <GSMXNYU$>                     432804
     RET                            <GSMXSYU$>                     432805
     RET                            <GSND0$>                       432803
     RET                            <GSYUKA$>                      432805
@@ -777,6 +790,7 @@ LOCAL SYMBOL
     SENDLEN%                       <SOCK.SEND>                    412805
     SENDMODE%                      <SOCK.SEND>                    412806
     SENDSIZE%                      <SOCK.SEND>                    412807
+    SEQ$                           <SOC.SMXNYU>                   460804
     SERV.FNAME$                    <FTP.DOWNLOAD>                 460802
     SERV.FNAME$                    <FTP.UPLOAD>                   460803
     SETTEINO                       <FTP.SETSTR>                   430801
@@ -787,8 +801,6 @@ LOCAL SYMBOL
     SMSG$                          <DIALOGYESNO$>                 460802
     SMSG$                          <MSGBOX$>                      460803
     SMSG$                          <ST.DISP>                      460803
-    SMX.CD1$                       <SMX.NYUCD$>                   462802
-    SMX.CD2$                       <SMX.NYUCD$>                   462803
     SNO                            <DBTIN>                        430801
     SNO                            <DBTLIST1>                     430801
     SNO                            <DBTLIST2>                     430801
@@ -856,7 +868,6 @@ LOCAL SYMBOL
     SUU                            <DNIPTM>                       432802
     SUU                            <DPIKNG>                       432804
     SUU                            <DPIKSUU>                      432805
-    SUU                            <DSMXNYU>                      432805
     SUU                            <DSMXSYU>                      432805
     SUU                            <DSYUKA>                       432803
     SUU                            <DYMDNYU>                      432805
@@ -878,6 +889,7 @@ LOCAL SYMBOL
     SUU$                           <GZKCHG$>                      462808
     SUU$                           <GZKTN$>                       462806
     SUU$                           <NM2CENTER$>                   462803
+    SUU$                           <SOC.SMXNYU>                   460806
     SUU$                           <SOC.ZKCHG>                    460805
     SVPORT%                        <SOCK.CONN>                    412804
     SW                             <DPSTS>                        430802
@@ -886,7 +898,7 @@ LOCAL SYMBOL
     SYORI$                         <GCHECK$>                      462801
     SYORI$                         <GPIKNG$>                      462802
     SYORI$                         <GPIKSUU$>                     462802
-    SYORI$                         <GSMXNYU$>                     462802
+    SYORI$                         <GSMXNYU$>                     462801
     SYORI$                         <GSMXSYU$>                     462802
     SYORI$                         <GSYACD$>                      462802
     SYORI$                         <GSYUKA$>                      462802
@@ -921,6 +933,7 @@ LOCAL SYMBOL
     VALUE$                         <STS.PUT>                      460802
     VALUE$                         <STS.PUT3>                     460802
     W                              <MOD10W3$>                     432804
+    WASH$                          <SOC.SMXNYU>                   460807
     WRITEFDSET$                    <SOCK.SELECT>                  462803
     X                              <DOWNLOAD>                     430801
     X                              <DPRINT>                       430803
@@ -964,9 +977,9 @@ FUNCTION SYMBOL
     BTINIT                                                        512850
     BTPT208INIT                                                   512851
     BTPW208INIT                                                   532852
-    BTYMDGEN                                                      5128F8
+    BTYMDGEN                                                      5128FA
     CENTER$                                                       562822
-    CHGSCD$                                                       5628DB
+    CHGSCD$                                                       5628DD
     CHKDATE                                                       53288A
     COM.CLOSE                                                     512831
     COM.ERRMSG$                                                   562832
@@ -986,100 +999,100 @@ FUNCTION SYMBOL
     DBG.INIT                                                      512817
     DBG.PUT                                                       51281A
     DBG2.KILL                                                     512818
-    DBTERR                                                        5128EE
-    DBTIN                                                         5128EA
-    DBTLIST1                                                      5128EF
-    DBTLIST2                                                      5128F0
-    DBTSRCH                                                       5128EC
-    DCHECK                                                        5128AA
+    DBTERR                                                        5128F0
+    DBTIN                                                         5128EC
+    DBTLIST1                                                      5128F1
+    DBTLIST2                                                      5128F2
+    DBTSRCH                                                       5128EE
+    DCHECK                                                        5128AB
     DEBUGERR                                                      51281E
     DEBUGPRINT                                                    51281D
     DEBUGPRINT$                                                   51281C
-    DEFLAG                                                        5128FA
+    DEFLAG                                                        5128FC
     DFEED                                                         51284E
     DGB.OPEN                                                      512815
     DGUIDE1                                                       51282C
     DGUIDE2                                                       51282D
     DIALOGYESNO$                                                  562844
-    DMENU0                                                        5128E7
-    DMENU1                                                        5128E8
-    DNIPPO                                                        5128C7
-    DNIPTM                                                        5128CA
+    DMENU0                                                        5128E9
+    DMENU1                                                        5128EA
+    DNIPPO                                                        5128C8
+    DNIPTM                                                        5128CB
     DOWNLOAD                                                      532834
-    DPDISP                                                        5128F5
-    DPIKNG                                                        5128AD
-    DPIKSUU                                                       5128B2
-    DPITEMGET                                                     5328F4
+    DPDISP                                                        5128F7
+    DPIKNG                                                        5128AE
+    DPIKSUU                                                       5128B3
+    DPITEMGET                                                     5328F6
     DPRINT                                                        512825
-    DPSET                                                         5128F6
-    DPSTS                                                         5128F3
+    DPSET                                                         5128F8
+    DPSTS                                                         5128F5
     DQR.CHECK                                                     532880
-    DRCV                                                          5128A0
+    DRCV                                                          5128A1
     DSCREEN                                                       512824
-    DSMXNYU                                                       5128D5
-    DSMXSYU                                                       5128D9
-    DSND                                                          51289E
+    DSMXNYU                                                       5128D7
+    DSMXSYU                                                       5128DB
+    DSND                                                          51289F
     DSYACD                                                        51288E
-    DSYUKA                                                        5128B7
-    DTANA                                                         5128E4
-    DTENPR                                                        5128A4
-    DTENSC                                                        5128A7
+    DSYUKA                                                        5128B8
+    DTANA                                                         5128E6
+    DTENPR                                                        5128A5
+    DTENSC                                                        5128A8
     DTITLE                                                        51282B
-    DYMDNYU                                                       5128CF
-    DYMDPR                                                        5128D1
-    DZKCHG                                                        5128C4
-    DZKINQ                                                        5128C1
-    DZKNY                                                         5128BB
-    DZKTN                                                         5128BE
+    DYMDNYU                                                       5128D0
+    DYMDPR                                                        5128D2
+    DZKCHG                                                        5128C5
+    DZKINQ                                                        5128C2
+    DZKNY                                                         5128BC
+    DZKTN                                                         5128BF
     EXEC.SRCH                                                     532807
-    FILECHK                                                       5128F9
+    FILECHK                                                       5128FB
     FILEEXISTS                                                    532854
-    FTANAKBN$                                                     5628E3
+    FTANAKBN$                                                     5628E5
     FTP.CLOSE                                                     532867
     FTP.DOWNLOAD                                                  532869
     FTP.MSG$                                                      562865
     FTP.OPEN                                                      532866
     FTP.SETSTR                                                    512858
     FTP.UPLOAD                                                    532868
-    GBTIN$                                                        5628EB
-    GBTLIST$                                                      5628F1
-    GBTSRCH$                                                      5628ED
-    GCHECK$                                                       5628AB
+    GBTIN$                                                        5628ED
+    GBTLIST$                                                      5628F3
+    GBTSRCH$                                                      5628EF
+    GCHECK$                                                       5628AC
     GETQR                                                         51286A
     GETSERIAL                                                     512810
-    GMENU1$                                                       5628E9
-    GNIPPO$                                                       5628C9
-    GNIPPOSAVE                                                    5128C8
-    GNIPTM$                                                       5628CC
-    GNIPTMSAVE                                                    5128CB
-    GPIKNG$                                                       5628B1
-    GPIKSUU$                                                      5628B4
-    GPKGSAVE                                                      5128AE
-    GPKSUSAVE                                                     5128B3
-    GPSET$                                                        5628F7
-    GRCV0$                                                        5628A2
-    GRCV1$                                                        5628A1
-    GSMXNYU$                                                      5628D6
-    GSMXSYU$                                                      5628DA
-    GSND0$                                                        56289F
+    GMENU1$                                                       5628EB
+    GNIPPO$                                                       5628CA
+    GNIPPOSAVE                                                    5128C9
+    GNIPTM$                                                       5628CD
+    GNIPTMSAVE                                                    5128CC
+    GPIKNG$                                                       5628B2
+    GPIKSUU$                                                      5628B5
+    GPKGSAVE                                                      5128AF
+    GPKSUSAVE                                                     5128B4
+    GPSET$                                                        5628F9
+    GRCV0$                                                        5628A3
+    GRCV1$                                                        5628A2
+    GSMXNYU$                                                      5628D8
+    GSMXSYU$                                                      5628DC
+    GSND0$                                                        5628A0
     GSYACD$                                                       56288F
-    GSYUKA$                                                       5628B9
-    GSYUKASAVE                                                    5128B8
-    GT2.MSG$                                                      5128AC
-    GT3.MSG$                                                      5128B5
-    GTANA$                                                        5628E5
-    GTENPR$                                                       5628A6
-    GTENSAVE                                                      5128A8
-    GTENSC$                                                       5628A9
-    GVER                                                          5128E6
-    GYMDNYU$                                                      5628D0
-    GYMDPR$                                                       5628D2
-    GZKCHG$                                                       5628C5
-    GZKINQ$                                                       5628C2
-    GZKNY$                                                        5628BC
-    GZKTN$                                                        5628BF
+    GSYUKA$                                                       5628BA
+    GSYUKASAVE                                                    5128B9
+    GT2.MSG$                                                      5128AD
+    GT3.MSG$                                                      5128B6
+    GTANA$                                                        5628E7
+    GTENPR$                                                       5628A7
+    GTENSAVE                                                      5128A9
+    GTENSC$                                                       5628AA
+    GVER                                                          5128E8
+    GYMDNYU$                                                      5628D1
+    GYMDPR$                                                       5628D3
+    GZKCHG$                                                       5628C6
+    GZKINQ$                                                       5628C3
+    GZKNY$                                                        5628BD
+    GZKTN$                                                        5628C0
     HAN2ZEN$                                                      562803
-    HISSULIST2$                                                   5628B0
+    HISSULIST2$                                                   5628B1
     IIF                                                           532808
     IIF$                                                          562809
     INIT.SRCH                                                     512805
@@ -1109,7 +1122,7 @@ FUNCTION SYMBOL
     MOD10W3$                                                      56280B
     MOD10W3CHK                                                    53280C
     MSGBOX$                                                       562843
-    NIP.MSG$                                                      5128C6
+    NIP.MSG$                                                      5128C7
     NM2CENTER$                                                    562827
     NS$                                                           56281F
     NZ$                                                           562821
@@ -1122,27 +1135,29 @@ FUNCTION SYMBOL
     PCW.CLOSE                                                     512882
     PCW.INIT                                                      512883
     PCW.OPEN                                                      512881
-    PGENPR                                                        5128A5
-    PGRESTORE                                                     5128F2
-    PTENPR                                                        5128A3
+    PGENPR                                                        5128A6
+    PGRESTORE                                                     5128F4
+    PTENPR                                                        5128A4
     QR.READ$                                                      56288C
     REPLACE$                                                      562804
-    REQMSG                                                        5328B6
-    REQMSG2                                                       5328AF
+    REQMSG                                                        5328B7
+    REQMSG2                                                       5328B0
     SBEEP                                                         512800
     SCANKEY$                                                      56288D
     SCLS                                                          51280F
     SET.SRCH                                                      512806
     SETCOLOR                                                      512823
     SETSYSTEM%                                                    512811
-    SMX.NYUCD$                                                    5628D3
-    SMX.SYUCD$                                                    5628D7
-    SMXNYU.MSG$                                                   5128D4
-    SMXSYU.MSG$                                                   5128D8
+    SMX.NYUCD$                                                    5628D4
+    SMX.NYUITEM                                                   5328D5
+    SMX.SYUCD$                                                    5628D9
+    SMXNYU.MSG$                                                   5128D6
+    SMXSYU.MSG$                                                   5128DA
     SOC.ERRMSG$                                                   56285B
     SOC.LIVE                                                      53288B
-    SOC.RIYU                                                      53289D
+    SOC.RIYU                                                      53289E
     SOC.SEND                                                      532896
+    SOC.SMXNYU                                                    53289D
     SOC.SMXZAIKO                                                  53289C
     SOC.YMDSEND                                                   53289A
     SOC.YMDZAIKO                                                  53289B
@@ -1197,31 +1212,31 @@ FUNCTION SYMBOL
     TMF.SETTIME                                                   512874
     TRIM$                                                         562802
     UPLOAD                                                        532833
-    YMD.CODE$                                                     5628CD
-    YMDNYU.MSG$                                                   5128CE
-    ZKCHG.MSG$                                                    5128C3
-    ZKINQ.MSG$                                                    5128C0
-    ZKNY.MSG$                                                     5128BA
-    ZKTN.MSG$                                                     5128BD
-    ZTN.CLEAR                                                     5128DF
-    ZTN.CLOSE                                                     5128DD
-    ZTN.COPY                                                      5128E2
-    ZTN.INIT                                                      5128DE
-    ZTN.OPEN                                                      5128DC
-    ZTN.PUT                                                       5128E1
-    ZTN.RECNO                                                     5328E0
+    YMD.CODE$                                                     5628CE
+    YMDNYU.MSG$                                                   5128CF
+    ZKCHG.MSG$                                                    5128C4
+    ZKINQ.MSG$                                                    5128C1
+    ZKNY.MSG$                                                     5128BB
+    ZKTN.MSG$                                                     5128BE
+    ZTN.CLEAR                                                     5128E1
+    ZTN.CLOSE                                                     5128DF
+    ZTN.COPY                                                      5128E4
+    ZTN.INIT                                                      5128E0
+    ZTN.OPEN                                                      5128DE
+    ZTN.PUT                                                       5128E3
+    ZTN.RECNO                                                     5328E2
 
 UNDEFINED WORK SYMBOL REPLACED BY PUBLIC SYMBOL
-    REQMSG                         <REQMSG2>                      5328B6
-    GRCV0$                         <GRCV1$>                       5628A2
+    REQMSG                         <REQMSG2>                      5328B7
+    GRCV0$                         <GRCV1$>                       5628A3
 
 OBJECT INFORMATION
                                                   Offset     Size
     PRC                                           00000000   00000100
-    REG                                           00000100   00003D6C
-    PRD                                           00003E6C   0001BCBA
+    REG                                           00000100   00003E12
+    PRD                                           00003F12   0001C3A6
 
 PRD INFORMATION
     [Filename]                                    Offset     Size
-    _Org\main.ob4                                 00000000   0001BCBA   (00000000)
-    [Total]                                                  0001BCBA
+    _Org\main.ob4                                 00000000   0001C3A6   (00000000)
+    [Total]                                                  0001C3A6

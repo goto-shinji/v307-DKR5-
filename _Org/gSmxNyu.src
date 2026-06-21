@@ -39,18 +39,20 @@
 					exit function
 				endif
 			endif
-		elseif( Split.count>=12 )then
-			Smx.Dst$ = Trim$(Split.item$(0))
-			Smx.Cd1$ = Trim$(Split.item$(2))
-			Smx.Cd2$ = Trim$(Split.item$(1))
-			Smx.Suu$ = Trim$(Split.item$(4))
-			Smx.ProcDt$ = Trim$(Split.item$(6))
-			Smx.Seq$ = Smx.ProcDt$
-			if( Smx.Dst$<>"" And Smx.Cd1$<>"" And Smx.Cd2$<>"" And Smx.Suu$<>"" )then
-				if( isNum(Smx.Suu$) And val(Smx.Suu$)>0 )then
-					Smx.NyuType$ = "NORMAL"
-					Smx.NyuCd$ = Smx.Cd1$ + "@" + Smx.Cd2$
-					exit function
+		else
+			if( Split.count>=11 )then
+				Smx.Dst$ = Trim$(Split.item$(0))
+				Smx.Cd1$ = Trim$(Split.item$(2))
+				Smx.Cd2$ = Trim$(Split.item$(1))
+				Smx.Suu$ = Trim$(Split.item$(4))
+				Smx.ProcDt$ = Trim$(Split.item$(6))
+				Smx.Seq$ = Smx.ProcDt$
+				if( Smx.Dst$<>"" And Smx.Cd1$<>"" And Smx.Cd2$<>"" And Smx.Suu$<>"" )then
+					if( isNum(Smx.Suu$) And val(Smx.Suu$)>0 )then
+						Smx.NyuType$ = "NORMAL"
+						Smx.NyuCd$ = Smx.Cd1$ + "@" + Smx.Cd2$
+						exit function
+					endif
 				endif
 			endif
 		endif
