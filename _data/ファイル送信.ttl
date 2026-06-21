@@ -1,0 +1,33 @@
+connect '/C=3 /BAUD=115200'
+
+	PRGNAME='P00.FLD'
+	call ymdmSend
+
+	PRGNAME='P00.DAT'
+	call ymdmSend
+
+	PRGNAME='P11.FLD'
+	call ymdmSend
+
+	PRGNAME='P11.DAT'
+	call ymdmSend
+
+	;messagebox '送信終了' '終了'
+closett
+end
+
+:ymdmSend
+	getdir filePath
+	strconcat filePath '\'
+	strconcat filePath PRGNAME
+	ymodemsend filePath
+	if result=1 then
+	else
+		msg=''
+		strconcat msg PRGNAME
+		strconcat msg ' の送信に失敗'
+		messagebox msg '送信失敗'
+		closett
+		end
+	endif
+return

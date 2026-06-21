@@ -1,0 +1,597 @@
+	'----------------------------------------------------------------
+	' 変数
+	'----------------------------------------------------------------
+	dim gbw.addr$	' ｱﾄﾞﾚｽ
+
+	'----------------------------------------------------------------
+	' 画面
+	'----------------------------------------------------------------
+	sub dBtIn(sno)
+		scls("")
+		dTitle(loc.Center, "アドレス入力")
+		dprint(SCR.Mx1, clr.gid,	1,	4, 20, 	"ﾌﾟﾘﾝﾀのBDｱﾄﾞﾚｽを")
+		dprint(SCR.Mx1, clr.gid,	1,	6, 20, 	"ｽｷｬﾝしてください")
+		dprint(SCR.Mx1, clr.Nrm, 	1,	9, 20, 	"BDｱﾄﾞﾚｽ")
+		dprint(SCR.Mx1, clr.Nrm, 	1, 11, 20, 	"  [            ]")
+		if( gbw.addr$<>"" )then
+			dprint(SCR.Mx1, clr.Nrm, 4, 11, 12, gbw.addr$)
+		endif
+		select sno
+		case 1
+			dprint(SCR.Mx1, clr.Nrm, 1,13, 20,	"")
+			dprint(SCR.Mx1, clr.Nrm, 1,15, 20,	"")
+			dprint(SCR.Mx1, clr.Nrm, 1,17, 20,	"")
+		case 2:
+			dprint(SCR.Mx1, clr.Nrm, 1,13, 20,	"")
+			dprint(SCR.Mx1, clr.Nrm, 1,15, 20,	"       接続中")
+			dprint(SCR.Mx1, clr.Nrm, 1,17, 20,	"")
+		end select
+		dGuide2(loc.Right, "F1:検索 M2:戻る")
+	end sub
+
+	'----------------------------------------------------------------
+	' 処理
+	'----------------------------------------------------------------
+	function gBtIn$
+		dim result$
+		dim syori$
+		dim ret
+
+		' プリンタの接続を切る
+		St.Close
+		scls("")
+
+		result$ = ""
+		gbw.addr$ = Sts.Get$(.BT.ADR$)
+		syori$ = "入力"
+		while( result$="" )
+			select syori$
+			case "入力"
+				dBtIn(1)
+				select ScanKey$(SCR.Mx1,4,11,12, .NUM$+.HEX$+.M2Key$+.F1Key$, gbw.addr$, "M" )
+				case .F1Key$:
+					result$ = "BT検索"
+
+				case .M2Key$:
+					result$ = "MENU"
+
+				case .ENT$:
+					if( len(ScanData$)<>12 )then
+						sBeep(BEEP.NG)
+					else
+						sBeep(BEEP.OK)
+						gbw.addr$ = ScanData$
+						syori$ = "ﾁｪｯｸ"
+					endif
+
+				case .BCD$:
+					sBeep(BEEP.OK)
+					gbw.addr$ = ScanData$
+					syori$ = "ﾁｪｯｸ"
+
+				end select
+
+			case "ﾁｪｯｸ"
+				dBtIn(2)
+				ret = BtCheck(gbw.addr$)
+				if(ret=0)then
+					result$ = "MENU"
+				else
+					syori$ = "入力"
+				endif
+
+			end select
+gBtInLoop:
+		wend
+		sBeep( BEEP.OK )
+		gBtIn$ = result$
+	end function
+	'----------------------------------------------------------------
+	' 画面
+	'----------------------------------------------------------------
+	sub dBtSrch(clsSw)
+		scls("")
+
+		'---  s1 s2  x	y  l   123456789012345678901
+		dTitle(loc.Center,"プリンタ検索")
+		dprint(SCR.Mx1, clr.Nrm, 2, 5, 0, "開始しますか？")
+		dGuide2(loc.Right, "M1:開始 M2:戻る")
+	end sub
+
+	'----------------------------------------------------------------
+	' 処理
+	'----------------------------------------------------------------
+	function gBtSrch$
+		dim result$
+		dim ret
+
+		dBtSrch(1)
+		result$ = ""
+		while( result$="" )
+			select keywait$( .M1Key$+.M2Key$)
+			case .M1Key$:
+				result$ = "BTList"
+
+			case .M2Key$:
+				result$ = "MENU"
+
+			end select
+		wend
+		sBeep( BEEP.OK )
+		gBtSrch$ = result$
+	end function
+
+	'----------------------------------------------------------------
+	' 検索中
+	'----------------------------------------------------------------
+	sub dBtErr(bd$)
+		Dim k$
+
+		scls("")
+		sBeep(BEEP.NG)
+
+		dTitle(loc.Center, "プリンタ検索")
+		dprint(SCR.Mx1, clr.Nrm, 1, 7, 0, "     失敗しました")
+		dprint(SCR.Mx1, clr.Nrm, 1, 9, 0, bd$)
+		dGuide2(loc.Right, "M2:戻る")
+
+		k$ = keywait$( .M2Key$ )
+	end sub
+
+	'----------------------------------------------------------------
+	' 検索中
+	'----------------------------------------------------------------
+	sub dBtList1(sno)
+		scls("")
+		select sno
+		case 1:
+			dTitle(loc.Center, "プリンタ検索")
+			dprint(SCR.Mx1, clr.Nrm, 1, 7, 0, "       検索中  ")
+			dGuide2(loc.Right, "BS/C中断")
+		case 2:
+			dTitle(loc.Center, "プリンタ検索")
+			dprint(SCR.Mx1, clr.Nrm, 1, 7, 0, "       接続中        ")
+			dGuide2(loc.Right, "BS/C中断")
+		end select
+	end sub
+
+	'----------------------------------------------------------------
+	' 検索結果
+	'----------------------------------------------------------------
+	sub dBtList2(sno)
+		scls("")
+		dim cnt
+
+		dTitle(loc.Center, "検索結果:" + str$(Bt.Num%)+"件")
+		if( Bt.Num%<1 )then
+			dprint(SCR.Mx1, clr.Nrm, 4, 5, 0, "見つかりません")
+			dprint(SCR.Mx1, clr.Nrm, 3, 7, 0, "再度実行しますか")
+			dGuide2(loc.Right, "M1:実行 M2:戻る")
+		else
+			for cnt=0 to Bt.Num% -1
+				dprint(SCR.Mx1, iif(sno=(cnt+1),clr.csr,clr.Nrm), 1, 5+(cnt*2), 0, str$(cnt+1) + ":" + Bt.Addr$(cnt))
+			next
+			dGuide2(loc.Right, "M2:戻る")
+		endif
+	end sub
+
+	'----------------------------------------------------------------
+	' 処理
+	'----------------------------------------------------------------
+	function gBtList$
+		dim ret
+		dim syori$
+		dim num		' 検索結果
+		dim sno 	' 選択番号
+		dim k$		' 入力キー
+
+		on error goto gBtListErr
+
+		sno = 1
+
+		syori$ = "SCAN"
+		while( 1 )
+			select syori$
+			case "SCAN":
+				dBtList1(1)		' 検索中画面
+				St.Close		' プリンタの接続を切る
+				num = bt.Scan
+				if( num<1 )then
+					sBeep(BEEP.NG)
+					dBtList2(sno)	' 見つかりません画面
+					k$ = keywait$(.M1Key$ + .M2Key$ + .ENT$ )
+					sBeep(BEEP.OK)
+					if( k$ = .M2Key$ )then
+						goto gBtListEnd
+					endif
+					syori$ = "SCAN"
+				else
+					syori$ = "LIST"
+				endif
+
+			case "LIST":
+				sBeep(BEEP.OK)
+				dBtList2(sno)		' アドレスリスト画面
+				k$ = keywait$( mid$("12345", 1, Bt.Num%)+.F5Key$+.F6Key$+.M2Key$+.ENT$ )
+				select k$
+				case .M2Key$:
+					sBeep(BEEP.OK)
+					goto gBtListEnd
+
+				case .F5Key$:
+					sBeep(BEEP.OK)
+					sno = iif(sno>1, sno-1, sno)		' snoは1～Bt.Num%
+
+				case .F6Key$:
+					sBeep(BEEP.OK)
+					sno = iif(sno<Bt.Num%, sno+1, sno)	' snoは1～Bt.Num%
+
+				case .ENT$
+					sBeep(BEEP.OK)
+					dBtList1(2)		' 設定中画面
+					ret = BtCheck(Bt.Addr$(sno-1))
+					if(ret=0)then
+						goto gBtListEnd
+					endif
+					sBeep(BEEP.NG)
+
+				case else
+					if( val(k$)>0 and val(k$)<=Bt.Num%)then
+						dBtList1(2)		' 設定中画面
+						ret = BtCheck(Bt.Addr$(val(k$)-1))
+						if(ret=0)then
+							goto gBtListEnd
+						endif
+					endif
+					sBeep(BEEP.NG)
+
+				end select
+			end select
+		wend
+		sBeep( BEEP.OK )
+		goto gBtListEnd
+
+gBtListErr:
+		resume gBtListEnd
+
+gBtListEnd:
+		gBtList$ = "MENU"
+	end function
+
+	'----------------------------------------------------------------
+	' 入力定義
+	'----------------------------------------------------------------
+	dim pgw.itemCnt
+	dim pgw.sno, pgw.sts$, pgw.page, pgw.lno, pgw.name$, pgw.desc$, pgw.func$, pgw.len, pgw.min, pgw.max, pgw.note
+	dim pgw.items$(20)
+	dim pgw.title$
+
+	Const pgw.noteNone	=0
+	Const pgw.noteSleep	=1
+
+	' 配列 定義		頁	行	名前				ガイド1,		入力	桁数	min	max,	note
+DataPsetPt:
+	data	1,	.BT.SPD$,	1,	 3,	"印字速度1-2",		"[1-2]",		"",		1,		1,	2,		pgw.noteNone
+	data	2,	.BT.DNS$,	1,	 5,	"印刷濃度1-5",		"[1-5]",		"",		1,		1,	5,		pgw.noteNone
+	data	3,	.BT.HGT$,	1,	 7,	"用紙サイズ縦",		"[1-1280]",		"",		4,		1,	1280,	pgw.noteNone
+	data	4,	.BT.WID$,	1,	 9,	"用紙サイズ横",		"[1-384]",		"",		3,		1,	384,	pgw.noteNone
+	data	5,	.BT.PWR$,	1,	11,	"ｵｰﾄﾊﾟﾜｰｵﾌ",		"[000,001-999]","",		3,		0,	999,	pgw.noteNone
+	data	6,	.BT.POX$,	1,	13,	"縦補正",			"[0-300]",		"+",	4,		0,	300,	pgw.noteNone
+	data	7,	.BT.POY$,	1,	15,	"横補正",			"[0-300]",		"+",	4,		0,	300,	pgw.noteNone
+	data	8,	.BT.BTN$,	1,	17,	"プリントキー設定",	"[1:ON 2:OFF]",	"",		1,		1,	2,		pgw.noteNone
+	data 	0
+
+DataPsetPw:
+	data	1,	.BT.SPD$,	1,	 3,	"印字速度1-4",		"[1-4]",		"",		1,		1,	4,		pgw.noteNone
+	data	2,	.BT.DNS$,	1,	 5,	"印刷濃度1-10",		"[1-10]",		"",		1,		1,	10,		pgw.noteNone
+	data	3,	.BT.HGT$,	1,	 7,	"用紙サイズ縦",		"[1-1280]",		"",		4,		1,	1280,	pgw.noteNone
+	data	4,	.BT.WID$,	1,	 9,	"用紙サイズ横",		"[1-384]",		"",		3,		1,	384,	pgw.noteNone
+	data	5,	.BT.PWR$,	1,	11,	"ｵｰﾄﾊﾟﾜｰｵﾌ",		"[000,001-999]","",		3,		0,	999,	pgw.noteNone
+	data	6,	.BT.POX$,	1,	13,	"縦補正",			"[0-300]",		"+",	4,		0,	300,	pgw.noteNone
+	data	7,	.BT.POY$,	1,	15,	"横補正",			"[0-300]",		"+",	4,		0,	300,	pgw.noteNone
+	data	8,	.PW.OFFSET$,2,	 3,	"ハクリ量",			"[0-99]",		"+",	3,		0,	99,		pgw.noteNone
+	data	9,	.PW.SLEEP1$,2,	 5,	"ﾗｲﾄｽﾘｰﾌﾟ(秒)",		"[0,1-3600]",	"",		4,		0,	3600,	pgw.noteNone
+	data	10,	.PW.SLEEP2$,2,	 7,	"ﾃﾞｨｰﾌﾟｽﾘｰﾌﾟ",		"[0,5-999]",	"",		3,		0,	999,	pgw.noteSleep
+	data 	0
+
+DataTax:
+	data	1,	.TAX$,		1,	 3,	"消費税率",			"[0-99]",		"",		2,		0,	99,		pgw.noteNone
+	data 	0
+
+	'----------------------------------------------------------------
+	' リストの選択
+	'----------------------------------------------------------------
+	Const	pg.PrtSetPt = 1
+	Const	pg.PrtSetPw = 2
+	Const	pg.TaxSet = 3
+
+	'----------------------------------------------------------------
+	' リストの選択
+	'----------------------------------------------------------------
+	sub PgRestore( ListNo )
+		' RESTORE
+		select listNo
+		case pg.PrtSetPt:	restore DataPsetPt
+		case pg.PrtSetPw:	restore DataPsetPw
+		case pg.TaxSet:		restore DataTax
+		case else:			exit sub
+		end select
+
+		' 配列数を得る
+		dim loop
+		loop = 1
+		pgw.itemCnt = 0
+		while( loop = 1 )
+			read pgw.sno
+			if( pgw.sno>0 )then
+				read  pgw.sts$, pgw.page, pgw.lno, pgw.name$, pgw.desc$, pgw.func$, pgw.len, pgw.min, pgw.max, pgw.note
+				pgw.itemCnt = pgw.itemCnt + 1
+			else
+				loop = 0
+			endif
+		wend
+
+		' RESTORE
+		select listNo
+		case pg.PrtSetPt:	restore DataPsetPt
+		case pg.PrtSetPw:	restore DataPsetPw
+		case pg.TaxSet:		restore DataTax
+		case else:			exit sub
+		end select
+
+	end sub
+
+	'----------------------------------------------------------------
+	' 値を得る/保存する
+	' 
+	' sw:	0:読む
+	' sw:	1:セットする
+	'----------------------------------------------------------------
+	sub dPsts(ListNo, sw)
+		dim loop
+		PgRestore(ListNo)
+
+		loop = 1
+		while( loop = 1 )
+			read pgw.sno
+			if( pgw.sno>0 )then
+				read  pgw.sts$, pgw.page, pgw.lno, pgw.name$, pgw.desc$, pgw.func$, pgw.len, pgw.min, pgw.max, pgw.note
+				if( sw = 0 )then
+					pgw.items$(pgw.sno) = Sts.Get$(pgw.sts$)
+				else
+					Sts.Put(pgw.sts$, pgw.items$(pgw.sno))
+				endif
+			else
+				loop = 0
+			endif
+		wend
+	end sub
+
+	'----------------------------------------------------------------
+	' 頁を得る
+	'----------------------------------------------------------------
+	function dPitemGet(ListNo, sno)
+		dim loop
+		PgRestore(ListNo)
+
+		loop = 1
+		while( loop = 1 )
+			read pgw.sno
+			if( pgw.sno>0 )then
+				read  pgw.sts$, pgw.page, pgw.lno, pgw.name$, pgw.desc$, pgw.func$, pgw.len, pgw.min, pgw.max, pgw.note
+
+				if( sno = pgw.sno )then
+					loop = 0
+				endif
+			else
+				loop = 0
+			endif
+		wend
+		dPitemGet = pgw.page
+	end function
+
+	'----------------------------------------------------------------
+	' 画面を書く
+	'----------------------------------------------------------------
+	sub dpDisp(ListNo, spage, sno)
+		dim loop
+		dim dst$
+		on error goto dpDispErr
+
+		PgRestore(ListNo)
+
+		' dTitle(loc.Center, " プリンタ設定 " +ns$(spage)+ "/1")
+		dTitle(loc.Center, pgw.title$)
+		loop = 1
+		while( loop = 1 )
+			read pgw.sno
+			if( pgw.sno>0 )then
+				read  pgw.sts$, pgw.page, pgw.lno, pgw.name$, pgw.desc$, pgw.func$, pgw.len, pgw.min, pgw.max, pgw.note
+
+				if( spage = pgw.page )then
+					dprint(SCR.Mx1, iif(sno=pgw.sno,clr.Csr,clr.Nrm), 1, pgw.lno, 0, pgw.name$)
+					dprint(SCR.Mx1, clr.Nrm, 19-pgw.len, pgw.lno, 0, "[")
+					dprint(SCR.Mx1, clr.Nrm, 20, pgw.lno, 0, "]")
+					if( instr(pgw.func$, "+")<1 )then
+						dst$ = nz$(val(pgw.items$(pgw.sno)), pgw.len)
+					else
+						dst$ = iif$(val(pgw.items$(pgw.sno))<0, "-", "+") + nz$(abs(val(pgw.items$(pgw.sno))), pgw.len-1)
+					endif
+					dprint(SCR.Mx1, clr.Nrm, 20-pgw.len, pgw.lno, pgw.len, dst$)
+				endif
+				if( sno = pgw.sno )then
+					dprint(SCR.Mx1, clr.Nrm, 1, 21, 20, pgw.desc$)
+				endif
+			else
+				loop = 0
+			endif
+		wend
+		if( pgw.page = 1 )then
+		else
+			dst$ = ""
+			if( spage<>1 )then
+				dst$ = dst$ + "▲前頁有"
+			endif
+			if( spage<pgw.page )then
+				dst$ = dst$ + "▼次頁有"
+			endif
+			dprint(SCR.Mx1, clr.Nrm, 1, 19, 0, right$("                    " + dst$, 20))
+		endif
+		dGuide2(loc.Right, "M2:戻る")
+		goto dpDispEnd
+
+dpDispErr:
+		Crash( "dpDisp", err, erl )
+		resume dpDispEnd
+
+dpDispEnd:
+	end sub
+
+	'----------------------------------------------------------------
+	' 画面
+	'----------------------------------------------------------------
+	dim pgw.nowpage
+	sub dPset(ListNo, sno)
+		dim page
+
+		page = dPitemGet(ListNo, sno)
+		if( pgw.nowpage <> page )then
+			pgw.nowpage = page
+			scls("")
+		endif
+
+		dpDisp(ListNo, page, sno)
+	end sub
+
+	'----------------------------------------------------------------
+	' 詳細設定処理
+	' listNo:	処理区分
+	' 
+	' initPR% = true	: プリンタ初期化処理をする
+	' initPR% = false	: プリンタ初期化処理をしない
+	'----------------------------------------------------------------
+	function gPset$( listNo )
+		dim result$
+		dim page, sno
+		dim ret$
+		dim msgret$
+		dim ret
+		dim filename$(8)
+
+	DebugPrint("gPset$", ListNo)
+		if( ListNo <> pg.TaxSet )then
+			ret$ = Sts.Get$(.BT.ADR$)
+			if( ret$ = "" )then
+				msgret$ = msgbox$( Beep.NG, "詳細設定", "プリンタ選択を;行ってください", msgbox.OK)
+				sBeep(BEEP.OK)
+				goto gPsetEnd
+			endif
+		endif
+
+		on error goto gPsetErr
+		scls("")
+		dPsts(listNo,0)	' ステータスを得る
+		sno = 1
+
+		result$ = ""
+		while( result$="" )
+			if( sno=0 )then
+				result$ = "MENU"
+				goto gPsetNext
+			endif
+
+			if( sno>pgw.itemCnt )then
+				' 詳細設定
+				dPsts(ListNo, 1)	' ステータス設定の画面
+				select ListNo
+				case pg.PrtSetPt
+					BtPt208Init
+					ret = St.Print("P00.dat", 0, filename$)
+					if( ret=0 )then
+						result$ = "MENU"
+						sBeep(BEEP.OK)
+					else
+						msgret$ = msgbox$( Beep.NG, "詳細設定", "プリンタを;確認してください", msgbox.OK)
+						sBeep(BEEP.OK)
+						goto gPsetEnd
+					endif
+
+				case pg.PrtSetPw
+					ret = BtPw208Init
+					if( ret=0 )then
+						result$ = "MENU"
+						sBeep( BEEP.OK )
+					else
+						msgret$ = msgbox$( Beep.NG, "詳細設定", "プリンタを;確認してください", msgbox.OK)
+						sBeep(BEEP.OK)
+						goto gPsetEnd
+					endif
+
+				case pg.TaxSet
+					sBeep( BEEP.OK )
+					result$ = "MENU"
+
+				case else
+					sBeep(BEEP.NG)
+
+				end select
+				goto gPsetNext
+			endif
+
+			dPset(ListNo, sno)
+			page = dPitemGet(listNo, sno)
+
+			ret$ = ScanKey$(SCR.Mx1, (20-pgw.len), pgw.lno, pgw.len, pgw.func$+"1234567890"+.M2Key$+.F5Key$+.F6Key$, pgw.items$(sno), "")
+			select ret$
+			case .M2Key$:
+				sBeep(BEEP.OK)
+				result$ = "MENU"
+				goto gPsetEnd
+
+			case .F5Key$:
+				sBeep(BEEP.OK)
+				sno = iif(sno>1, sno-1, sno)
+
+			case .F6Key$:
+				sBeep(BEEP.OK)
+				sno = iif(sno<pgw.itemCnt, sno+1, sno)
+
+			case else
+				if( val(ScanData$)<pgw.min _
+				Or	val(ScanData$)>pgw.max )then
+					sBeep(BEEP.NG)
+					goto gPsetNext
+				endif
+
+				select pgw.note
+				case pgw.noteNone:
+				case pgw.noteSleep:
+					if( val(ScanData$)>0 and val(ScanData$)<5 )then
+						sBeep(BEEP.NG)
+						goto gPsetNext
+					endif
+				end select
+
+				sBeep(BEEP.OK)
+				if( ScanSign$="-" )then
+					pgw.items$(sno) = ns$(val(ScanData$) * (-1))
+				else
+					pgw.items$(sno) = ScanData$
+				endif
+				sno = sno + 1
+
+			end select
+
+gPsetNext:
+		wend
+		sBeep( BEEP.OK )
+		goto gPsetEnd:
+
+gPsetErr:
+		Crash("gPset", err, erl)
+		resume gPsetEnd
+
+gPsetEnd:
+		result$ = "MENU"
+		gPset$ = result$
+	end function

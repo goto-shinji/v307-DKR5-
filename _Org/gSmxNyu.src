@@ -1,0 +1,318 @@
+	dim Smx.Suu$	' 数量
+	dim Smx.NyuType$	' NY=戻り品QR、NORMAL=従来QR
+	dim Smx.Dst$	' 出庫先
+	dim Smx.Seq$	' 元の連番
+	dim Smx.Cd1$	' 親品目
+	dim Smx.Cd2$	' 子品目
+	dim Smx.Wash$	' 洗浄方法
+	dim Smx.Name$	' 品名
+	dim Smx.OrgSuu$	' 元レコードの数量
+	dim Smx.ProcDt$	' 通常QRの処理日
+
+	'----------------------------------------------------------------
+	' SMX入庫QRを解析する
+	' $Nyは 出庫先、元連番、子品目、数量、洗浄方法を取得する
+	'----------------------------------------------------------------
+    Function Smx.NyuCd$(src$)
+		Smx.NyuType$ = ""
+		Smx.Dst$ = ""
+		Smx.Seq$ = ""
+		Smx.Cd1$ = ""
+		Smx.Cd2$ = ""
+		Smx.Suu$ = ""
+		Smx.Wash$ = ""
+		Smx.Name$ = ""
+		Smx.OrgSuu$ = ""
+		Smx.ProcDt$ = ""
+
+		Split(src$, ",")
+		if( Split.count=6 And Split.item$(0)="$Ny" )then
+			Smx.Dst$ = Trim$(Split.item$(1))
+			Smx.Seq$ = Trim$(Split.item$(2))
+			Smx.Cd2$ = Trim$(Split.item$(3))
+			Smx.Suu$ = Trim$(Split.item$(4))
+			Smx.Wash$ = Trim$(Split.item$(5))
+			if( Smx.Dst$<>"" And Smx.Seq$<>"" And Smx.Cd2$<>"" And Smx.Suu$<>"" And Smx.Wash$<>"" )then
+				if( isNum(Smx.Seq$) And isNum(Smx.Suu$) And isNum(Smx.Wash$) And val(Smx.Suu$)>0 )then
+					Smx.NyuType$ = "NY"
+					Smx.NyuCd$ = Smx.Cd2$
+					exit function
+				endif
+			endif
+		elseif( Split.count>=12 )then
+			Smx.Dst$ = Trim$(Split.item$(0))
+			Smx.Cd1$ = Trim$(Split.item$(2))
+			Smx.Cd2$ = Trim$(Split.item$(1))
+			Smx.Suu$ = Trim$(Split.item$(4))
+			Smx.ProcDt$ = Trim$(Split.item$(6))
+			Smx.Seq$ = Smx.ProcDt$
+			if( Smx.Dst$<>"" And Smx.Cd1$<>"" And Smx.Cd2$<>"" And Smx.Suu$<>"" )then
+				if( isNum(Smx.Suu$) And val(Smx.Suu$)>0 )then
+					Smx.NyuType$ = "NORMAL"
+					Smx.NyuCd$ = Smx.Cd1$ + "@" + Smx.Cd2$
+					exit function
+				endif
+			endif
+		endif
+
+		Smx.NyuCd$ = ""
+    End Function
+
+	'----------------------------------------------------------------
+	' 元連番から親品目、品名、元数量を問い合わせる
+	'----------------------------------------------------------------
+	Function Smx.NyuItem
+		dim result
+
+		result = Soc.SmxNyu("SmxNyuItem", Qr.Data$(0), Smx.Dst$, Smx.Seq$, Smx.Cd2$, Smx.Suu$, Smx.Wash$, Smx.Cd1$)
+		if( result=0 )then
+			if( Sock.Recv.ItemCount>=6 )then
+				Smx.Cd1$ = Sock.Recv.Items$(2)
+				Smx.Name$ = Sock.Recv.Items$(3)
+				Smx.OrgSuu$ = Sock.Recv.Items$(4)
+				if( Smx.NyuType$="NORMAL" )then
+					Smx.Wash$ = Sock.Recv.Items$(5)
+				endif
+			else
+				result = 9
+				soc.msg$ = "応答項目不足"
+			endif
+		endif
+		Smx.NyuItem = result
+	End Function
+
+	'----------------------------------------------------------------
+	' 画面メッセージ
+	'----------------------------------------------------------------
+	sub SmxNyu.msg$(msg1$, msg2$)
+		dim buf$[255]
+
+		dprint(SCR.Mx1, Clr.Nrm,  1, 3, 20, msg1$)
+		buf$ = right$("                    "+msg2$, 20)
+		dprint(SCR.Mx1, Clr.Nrm,  1, 5, 20, mid$(buf$,1,20))
+	end sub
+
+	'----------------------------------------------------------------
+	' SMX入庫画面を表示する
+	'----------------------------------------------------------------
+	sub dSmxNyu(mno, jdg$, zik)
+		on error goto dSmxNyuErr
+
+		scls("dSmxNyu")
+		dTitle(loc.Center, "シスメックス入庫")
+
+		select jdg$
+		case "OK":	dprint(SCR.LxW, Clr.OK,   1, 6, 0, "　ＯＫ　")
+		case "NG":	dprint(SCR.LxW, Clr.Err,  1, 6, 0, "　ＮＧ　")
+		case "":	dprint(SCR.Lx1, Clr.Nrm,  1, 6,16, "")
+		case else:	dprint(SCR.Lx1, Clr.Err,  1, 6,16, jdg$)
+		end select
+
+		if( mno>=1 )then
+			dprint(SCR.Mx1, iif(mno=1, Clr.Itm, Clr.Nrm), 1, 10, 20, "入庫票")
+			dprint(SCR.Mx1, Clr.Nrm, 1, 12, 0, GQR.zro$)
+		else
+			dprint(SCR.Mx1, Clr.Nrm, 1, 10, 20, "")
+			dprint(SCR.Mx1, Clr.Nrm, 1, 12, 20, "")
+		endif
+
+		if( mno>=2 )then
+			if( mno=3 )then
+				dprint(SCR.Mx1, Clr.Itm, 1, 16, 20, " 洗浄方法:")
+				dprint(SCR.Mx1, Clr.Nrm, 1, 18, 20, "   　　(" + Smx.Wash$ + ")")
+			else
+				dprint(SCR.Mx1, iif(mno=2, Clr.Itm, Clr.Nrm), 1, 16, 20, " 数量:")
+				dprint(SCR.Mx1, Clr.Nrm, 1, 18, 20, "   　　(" + GQR.sum$ + ")")
+			endif
+		else
+			dprint(SCR.Mx1, Clr.Nrm, 1, 16, 20, "")
+			dprint(SCR.Mx1, Clr.Nrm, 1, 18, 20, "")
+		endif
+
+		if(mno=1)then
+			dGuide2(loc.Left, "M1:ﾒﾆｭｰ")
+		else
+			dGuide2(loc.Right, "M2:前項")
+		endif
+		goto dSmxNyuEnd:
+
+dSmxNyuErr:
+		Crash("dSmxNyu", err, erl)
+		resume dSmxNyuEnd
+
+dSmxNyuEnd:
+	end sub
+
+	'----------------------------------------------------------------
+	' SMX入庫処理
+	' $Nyは終了日時を更新した後、シートリーダ実績を登録する
+	'----------------------------------------------------------------
+	function gSmxNyu$
+		dim syori$
+		dim c$
+		dim jdg$
+		dim ret
+
+		sya.cd$ = ""
+		sya.dt$ = ""
+		syori$ = gSyacd$
+		if( syori$<>"" )then
+			goto gSmxNyuEnd:
+		endif
+
+		GQR.sum$ = ""
+		sya.msg$ = ""
+
+		on error goto gSmxNyuErr
+		syori$ = "初期画面"
+		while(1)
+
+			select syori$
+			case "初期画面":
+				GetQr("")
+				jdg$ = ""
+				syori$ = "入庫票"
+
+			case "入庫票":
+				dSmxNyu(1, jdg$, 1)
+				SmxNyu.msg$("入庫票", "バーコードスキャン")
+				c$ = Qr.Read$("Q")
+				select c$
+				case .M1Key$:
+					GQR.zro$ = ""
+					sBeep(BEEP.OK)
+					goto gSmxNyuEnd:
+
+				case .BCD$
+					GQR.zro$ = Smx.NyuCd$(Qr.Data$(0))
+					if( GQR.zro$="" )then
+						jdg$ = "QR形式ｴﾗｰ"
+						sBeep(BEEP.NG)
+						goto gSmxNyuLoop:
+					endif
+
+					GQR.sum$ = Smx.Suu$
+					dSmxNyu(1, "問合中", 0)
+					ret = Smx.NyuItem
+					if( ret<>0 )then
+						jdg$ = soc.msg$
+						sBeep(BEEP.NG)
+						goto gSmxNyuLoop:
+					endif
+
+					if( Smx.NyuType$="NY" )then
+						GQR.zro$ = Smx.Cd2$ + "@" + Smx.Cd1$
+						if( val(Smx.Suu$)<>val(Smx.OrgSuu$) )then
+							jdg$ = "数量違い"
+						else
+							jdg$ = ""
+						endif
+						syori$ = "入庫確認"
+					else
+						GQR.zro$ = Smx.Cd1$ + "@" + Smx.Cd2$
+						jdg$ = ""
+						syori$ = "数量表示"
+					endif
+					sBeep(BEEP.OK)
+				end select
+
+			case "入庫確認":
+				dSmxNyu(2, jdg$, 1)
+				SmxNyu.msg$(Smx.Name$, "洗浄:" + Smx.Wash$)
+				c$ = keyinput$
+				select c$
+				case .M2Key$:
+					syori$ = "入庫票"
+					sBeep(BEEP.OK)
+				case .ENT$:
+					syori$ = "洗浄方法"
+					sBeep(BEEP.OK)
+				case else
+					sBeep(BEEP.NG)
+				end select
+
+			case "数量表示":
+				jdg$ = ""
+				dSmxNyu(2, jdg$, 1)
+				select ScanKey$(SCR.Mx1, 9, 16, 4, .NUM$+.M2Key$, GQR.sum$, GQR.sum$)
+				case .M2Key$:
+					syori$ = "入庫票"
+					sBeep(BEEP.OK)
+				case .ENT$:
+					if( val(ScanData$)>0 )then
+						GQR.sum$ = ScanData$
+						syori$ = "洗浄方法"
+						sBeep(BEEP.OK)
+					else
+						jdg$ = "数量は1以上"
+						sBeep(BEEP.NG)
+					endif
+				case else
+					sBeep(BEEP.NG)
+				end select
+
+			case "洗浄方法":
+				jdg$ = ""
+				dSmxNyu(3, jdg$, 1)
+				SmxNyu.msg$(Smx.Name$, "洗浄方法を入力")
+				select ScanKey$(SCR.Mx1, 9, 16, 3, .NUM$+.M2Key$, Smx.Wash$, Smx.Wash$)
+				case .M2Key$:
+					if( Smx.NyuType$="NY" )then
+						syori$ = "入庫確認"
+					else
+						syori$ = "数量表示"
+					endif
+					sBeep(BEEP.OK)
+				case .ENT$:
+					if( ScanData$<>"" And isNum(ScanData$) )then
+						Smx.Wash$ = nz$(val(ScanData$),3)
+						syori$ = "登録"
+						sBeep(BEEP.OK)
+					else
+						jdg$ = "数字を入力"
+						sBeep(BEEP.NG)
+					endif
+				case else
+					sBeep(BEEP.NG)
+				end select
+
+			case "登録":
+				dSmxNyu(3, "送信中", 0)
+				if( Smx.NyuType$="NY" )then
+					ret = Soc.SmxNyu("SmxNyuFinish", Qr.Data$(0), Smx.Dst$, Smx.Seq$, Smx.Cd2$, Smx.Suu$, Smx.Wash$, Smx.Cd1$)
+					if( ret=0 )then
+						ret = Soc.SmxNyu("SmxNyuSheet", Qr.Data$(0), Smx.Dst$, Smx.Seq$, Smx.Cd2$, Smx.Suu$, Smx.Wash$, Smx.Cd1$)
+					endif
+				else
+					if( val(Smx.Wash$)=0 )then
+						ret = Soc.SmxNyu("SmxNyuSheet", Qr.Data$(0), Smx.Dst$, Smx.Seq$, Smx.Cd2$, GQR.sum$, Smx.Wash$, Smx.Cd1$)
+					else
+						ret = Soc.SmxZaiko("SmxNyu", Qr.Data$(0), GQR.zro$, "", GQR.sum$, "0", "0", Smx.Wash$)
+					endif
+				endif
+
+				if(ret=0)then
+					jdg$ = "OK"
+					dSmxNyu(2, jdg$, 0)
+					SmxNyu.msg$("登録完了", soc.msg$)
+					sBeep(BEEP.Done)
+					c$ = keyinput$
+				else
+					jdg$ = soc.msg$
+					dSmxNyu(2, jdg$, 0)
+					sBeep(BEEP.NG)
+					c$ = keyinput$
+				endif
+				syori$ = "入庫票"
+
+			end select
+gSmxNyuLoop:
+		wend
+
+gSmxNyuErr:
+		Crash("gSmxNyu", err, erl)
+		resume gSmxNyuEnd:
+
+gSmxNyuEnd:
+		gSmxNyu$ = "MENU"
+	end function

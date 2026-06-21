@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="shift_jis" standalone="yes"?>
+<BHT_Project_Information>
+  <SourceFileList>
+    <File>_Org\main.src</File>
+  </SourceFileList>
+  <LibraryFileList />
+  <IncludeFileList>
+    <File>_Org\fCheckQr.src</File>
+    <File>_Org\fKosei.src</File>
+    <File>_Org\fPickingChk.src</File>
+    <File>_Org\fScanQr.src</File>
+    <File>_Org\funcAll.src</File>
+    <File>_Org\gCheck.src</File>
+    <File>_Org\gMenu.src</File>
+    <File>_Org\gNippo.src</File>
+    <File>_Org\gPikng2.src</File>
+    <File>_Org\gPikSuu2.src</File>
+    <File>_Org\gRcv0.src</File>
+    <File>_Org\gSmxNyu.src</File>
+    <File>_Org\gSmxSyu.src</File>
+    <File>_Org\gSnd0.src</File>
+    <File>_Org\gSyain.src</File>
+    <File>_Org\gSyuka.src</File>
+    <File>_Org\gTana.src</File>
+    <File>_Org\gTenSc.src</File>
+    <File>_Org\gYmdNyu.src</File>
+    <File>_Org\gYmdPr.src</File>
+    <File>_Org\gZkChg.src</File>
+    <File>_Org\gZkNyu.src</File>
+    <File>_Org\gZkTn.src</File>
+    <File>_Org\socLive.src</File>
+    <File>_Org\socZaiko.src</File>
+  </IncludeFileList>
+  <Option>
+    <Language>BHT-BASIC4.0</Language>
+    <Build>Program</Build>
+    <DebugOut>0</DebugOut>
+    <ListOut>1</ListOut>
+    <TblOut>0</TblOut>
+    <CrossOut>0</CrossOut>
+    <SizeOut>0</SizeOut>
+    <ExInclude>0</ExInclude>
+    <MapOut>0</MapOut>
+    <UnDefVar>1</UnDefVar>
+    <JoinListOut>0</JoinListOut>
+    <ErrorOut>0</ErrorOut>
+    <PrgFormat>0</PrgFormat>
+    <ErrorScope>0</ErrorScope>
+    <AllStatic>0</AllStatic>
+    <DimScope>0</DimScope>
+    <ArgCall>0</ArgCall>
+    <WorkArray>0</WorkArray>
+  </Option>
+  <Other>
+    <BHT40CPL>1, 8, 0, 0</BHT40CPL>
+    <BHT40LNK>1, 7, 0, 0</BHT40LNK>
+    <BHT40LIB>1, 1, 0, 0</BHT40LIB>
+  </Other>
+  <Property>
+    <Major>0</Major>
+    <Minor>0</Minor>
+    <Revision>0</Revision>
+    <Comments />
+    <FileDescription />
+    <CompnyName />
+    <LegalTrademarks />
+    <ProductName />
+    <LegalCopyright />
+  </Property>
+</BHT_Project_Information>

@@ -1,0 +1,328 @@
+	Global ZkSoc.result
+	Global ZkSoc.ziksu$
+	Global ZkSoc.ziksu
+
+	'=================================================================
+	'データ
+	'=================================================================
+	Const	szk.Fnm$ = "sp-send.txt"
+	Const	szk.Fno% = 7
+	Const	szk.Max% = 32000
+
+	Global	szk.Rec$[255]
+	Global	szk.Count
+	'----------------------------------------------------------------
+	' オープン
+	'----------------------------------------------------------------
+	sub szk.Open
+		DebugPrint$("szk.Open", "start")
+		open szk.Fnm$ as szk.Fno% record szk.Max%
+		field szk.Fno% , 255 as szk.Rec$
+		szk.Count = lof(szk.Fno%)
+	end sub
+
+	'----------------------------------------------------------------
+	' クローズ
+	'----------------------------------------------------------------
+	sub szk.Close
+		DebugPrint$("szk.Close", "start")
+		szk.Count = lof(szk.Fno%)
+		Close( szk.Fno% )
+	end sub
+
+	'----------------------------------------------------------------
+	' 初期化
+	'----------------------------------------------------------------
+	sub szk.Init
+		szk.Open
+		szk.Close
+	end sub
+	szk.Init
+
+	'----------------------------------------------------------------
+	' 保存する
+	'----------------------------------------------------------------
+	sub szk.put
+		szk.Open
+		put szk.Fno%
+		szk.Close
+	end sub
+
+	'----------------------------------------------------------------
+	' １件目を取出す
+	'----------------------------------------------------------------
+	sub szk.get
+		szk.Open
+		DebugPrint("szk.get",szk.count)
+		if( szk.count>0 )then
+			get szk.Fno%, 1
+		endif
+		DebugPrint$("szk.get",szk.Rec$)
+		szk.Close
+	end sub
+
+	'----------------------------------------------------------------
+	' １件目を削除
+	'----------------------------------------------------------------
+	sub szk.del
+		dim fileno%
+		dim recno
+
+		szk.Open
+		fileno% = szk.Fno%
+		recno = 1
+		if( szk.count>0 )then
+			CALL "FILE.FN3" 14 fileno%, recno
+		endif
+		szk.Close
+	end sub
+
+	'----------------------------------------------------------------
+	' 在庫系共通電文を送信する
+	'	引数: 呼出名、品番、図番、入数、出数、理由区分、BHT日付、BHT時間
+	'	戻り値: サーバの結果コード（0=正常）
+	'	送信項目: 呼出名、BHTID、BHT日付、BHT時間
+	'	送信項目: 社員CD、納入日、判定（空文字）
+	'	送信項目: 品番、図番、入数、出数、理由区分
+	'
+	'
+	'
+	'
+	'
+	'
+	'----------------------------------------------------------------
+	Function Soc.Send( nm$, hno$, zno$, nsu$, ssu$, kbn$, dt$, tm$ )
+		dim result
+		dim msg$
+		dim ret
+
+		if( SysWifi )then
+		else
+			Soc.Send = 0
+			exit function
+		endif
+
+		result = 9
+		soc.retryCnt = 0
+
+		Sock.Param.Init(nm$)		' 1: 呼出名
+		Sock.Param.Add( SysBht$ )	' 2: BHTID
+		Sock.Param.Add( dt$ )		' 3: BHT日付
+		Sock.Param.Add( tm$ )		' 4: BHT時間
+		Sock.Param.Add( sya.cd$ )	' 5: 社員CD
+		Sock.Param.Add( sya.dt$ )	' 6: 納入日
+		Sock.Param.Add( "" )		' 7: 判定（空文字）
+		Sock.Param.Add( hno$ )		' 8: 品番
+		Sock.Param.Add( zno$ )		' 9: 図番
+		Sock.Param.Add( nsu$ )		' 10: 入数
+		Sock.Param.Add( ssu$ )		' 11: 出数
+		Sock.Param.Add( kbn$ )		' 12: 理由区分
+
+		'保存する
+		szk.Rec$ = Sock.Param$
+		szk.put							' 送信電文を保存し、
+
+socSend.Start:
+		szk.get							' 送信電文の1件目を取り出す
+
+		on error goto socSend.Err
+		msg$ = "Sock.Send"				' 送信する
+		ret = Sock.Send( szk.rec$ )
+		if( ret <> 0 )then
+			if( soc.retryCnt < soc.retryMax )then
+				soc.retryCnt = soc.retryCnt + 1
+				Sock.Discon
+				ret = Sock.Conn
+				goto socSend.Start
+			else
+				soc.msg$ = "送信ｴﾗｰ"
+				goto socSend.End
+			endif
+		endif
+
+		' 応答受信
+		msg$ = "Sock.Recv"
+		ret = Sock.Recv
+		if( ret <> 0 )then
+			soc.msg$ = "受信ｴﾗｰ"
+			goto socSend.End
+		else
+			szk.del						' 送信できたら、１件目を削除する
+			if( szk.count>0 )then		' まだ送信電文が有る場合は送信処理へ戻る
+				goto socSend.Start
+			endif
+		endif
+
+		' 応答対応
+		msg$ = "応答対応"
+		soc.msg$ = Sock.Recv.Items$(1)	' メッセージ
+		result = val(Sock.Recv.Items$(0))
+
+		' 以降は受け取り側で処理する
+		ZkSoc.result = result
+		ZkSoc.ziksu$ = Sock.Recv.Items$(2)
+		ZkSoc.ziksu	= val(ZkSoc.ziksu$)
+
+socSend.End:
+		Soc.Send = result
+		exit function
+
+socSend.Err:
+		soc.msg$ = "通信ｴﾗｰ 0x" + hex$(err)
+		resume socSend.End
+
+	End function
+
+	'----------------------------------------------------------------
+	' 在庫系電文を端末の現在日時で送信する
+	'----------------------------------------------------------------
+	Function Soc.Zaiko( nm$, hno$, zno$, nsu$, ssu$)
+		Soc.Zaiko = Soc.Send( nm$, hno$, zno$, nsu$, ssu$, "", Date$, Time$)
+	End Function
+
+	'----------------------------------------------------------------
+	' 在庫系電文を指定日時で送信する
+	'----------------------------------------------------------------
+	Function Soc.ZaikoTm( nm$, hno$, zno$, nsu$, ssu$, dt$, tm$)
+		Soc.ZaikoTm = Soc.Send( nm$, hno$, zno$, nsu$, ssu$, "", Date$, Time$)
+	End Function
+
+	'----------------------------------------------------------------
+	'在庫調整
+	'----------------------------------------------------------------
+	Function Soc.ZkChg( nm$, kbn$, hno$, zno$, suu$)
+		dim suu
+		dim nsu$
+		dim ssu$
+
+		suu = val(suu$)
+		if( suu<0 )then
+			nsu$ = ""
+			ssu$ = ns$(abs(suu))
+		else
+			nsu$ = ns$(abs(suu))
+			ssu$ = ""
+		endif
+		Soc.ZkChg = Soc.Send( nm$, hno$, zno$, nsu$, ssu$, kbn$, Date$, Time$)
+	End Function
+
+	'----------------------------------------------------------------
+	' 山寺・SMX共通電文を送信する
+	'	引数: 呼出名、スキャンデータ、図番、累進、入庫数、出庫数、在庫数、備考
+	'	戻り値: サーバの結果コード（0=正常）
+	'	送信項目: 呼出名、BHTID、BHT日付、BHT時間、社員CD、日付
+	'	送信項目: スキャンデータ、図番、累進、入庫数、出庫数、在庫数、備考
+	'	送信前に sp-send.txt へ保存し、正常受信後に先頭1件を削除する
+	'
+	'
+	'
+	'
+	'
+	'
+	'----------------------------------------------------------------
+	Function Soc.YmdSend( nm$, scn$, zno$, rno$, nsu$, ssu$, zsu$, bko$)
+		dim result
+		dim msg$
+		dim ret
+		dim dst$
+
+		if( SysWifi )then
+		else
+			Soc.YmdSend = 0
+			exit function
+		endif
+
+		result = 9
+		soc.retryCnt = 0
+
+		dst$ = mid$(sya.dt$,1,4) + "/" + mid$(sya.dt$,5,2) + "/" + mid$(sya.dt$,7,2)
+		Sock.Param.Init(nm$)		' 1: 呼出名
+		Sock.Param.Add( SysBht$ )	' 2: BHTID
+		Sock.Param.Add( date$ )		' 3: BHT日付
+		Sock.Param.Add( time$ )		' 4: BHT時間
+		Sock.Param.Add( sya.cd$ )	' 5: 社員CD
+		Sock.Param.Add( dst$ )		' 6: 日付
+		Sock.Param.Add( scn$ )		' 7: スキャンデータ
+		Sock.Param.Add( zno$ )		' 8: 図番
+		Sock.Param.Add( rno$ )		' 9: 累進
+		Sock.Param.Add( nsu$ )		' 10: 入庫数
+		Sock.Param.Add( ssu$ )		' 11: 出庫数
+		Sock.Param.Add( zsu$ )		' 12: 在庫数
+		Sock.Param.Add( bko$ )		' 13: 備考
+		'保存する
+		szk.Rec$ = Sock.Param$
+		szk.put							' 送信電文を保存し、
+
+socYmdSend.Start:
+		szk.get							' 送信電文の1件目を取り出す
+
+		on error goto socYmdSend.Err
+		msg$ = "Sock.YmdSnd"				' 送信する
+		ret = Sock.Send( szk.rec$ )
+		if( ret <> 0 )then
+			if( soc.retryCnt < soc.retryMax )then
+				soc.retryCnt = soc.retryCnt + 1
+				Sock.Discon
+				ret = Sock.Conn
+				goto socYmdSend.Start
+			else
+				soc.msg$ = "送信ｴﾗｰ"
+				goto socYmdSend.End
+			endif
+		endif
+
+		' 応答受信
+		msg$ = "Sock.Recv"
+		ret = Sock.Recv
+		if( ret <> 0 )then
+			soc.msg$ = "受信ｴﾗｰ"
+			goto socYmdSend.End
+		else
+			szk.del						' 送信できたら、１件目を削除する
+			if( szk.count>0 )then		' まだ送信電文が有る場合は送信処理へ戻る
+				goto socYmdSend.Start:
+			endif
+		endif
+
+		' 応答対応
+		msg$ = "応答対応"
+		soc.msg$ = Sock.Recv.Items$(1)	' メッセージ
+		result = val(Sock.Recv.Items$(0))
+
+		' 以降は受け取り側で処理する
+		ZkSoc.result = result
+
+socYmdSend.End:
+		Soc.YmdSend = result
+		exit function
+
+socYmdSend.Err:
+		soc.msg$ = "通信ｴﾗｰ 0x" + hex$(err)
+		resume socYmdSend.End
+
+	End function
+
+	'----------------------------------------------------------------
+	'山寺入出庫処理
+	'	呼出名、日付、スキャンデータ、図番、累進、入庫数、出庫数、在庫数、備考
+	'----------------------------------------------------------------
+	Function Soc.YmdZaiko( nm$, scn$, zno$, rno$, nsu$, ssu$, zsu$, biko$)
+		Soc.YmdZaiko = Soc.YmdSend( nm$, scn$, zno$, rno$, nsu$, ssu$, zsu$, biko$)
+	End Function
+
+	'----------------------------------------------------------------
+	'シスメックス入出庫処理
+	'　山寺のロジックを流用
+	'	呼出名を切り替えて同じ電文形式を使用する
+	'----------------------------------------------------------------
+	Function Soc.SmxZaiko( nm$, scn$, zno$, rno$, nsu$, ssu$, zsu$, biko$)
+		Soc.SmxZaiko = Soc.YmdSend( nm$, scn$, zno$, rno$, nsu$, ssu$, zsu$, biko$)
+	End Function
+
+	'----------------------------------------------------------------
+	' SMX戻り品QRの照会・登録・終了更新を送信する
+	' 共通項目の後にQR、出庫先、元連番、子品目、数量、洗浄方法を付加する
+	'----------------------------------------------------------------
+	Function Soc.SmxNyu( nm$, qr$, dst$, seq$, child$, suu$, wash$, parent$)
+		Soc.SmxNyu = Soc.YmdSend( nm$, qr$, dst$, seq$, child$, suu$, wash$, parent$)
+	End Function
