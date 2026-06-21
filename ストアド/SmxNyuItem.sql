@@ -40,7 +40,6 @@ BEGIN
     DECLARE @source_destination varchar(255);
     DECLARE @source_child varchar(255);
     DECLARE @finished varchar(30);
-    DECLARE @sheet_exists bit = 0;
 
     -- 途中で終了した場合にも、必ず判定可能な初期値を返す。
     SELECT
@@ -90,17 +89,7 @@ BEGIN
             RETURN 0;
         END;
 
-        -- 終了更新とシートリーダ登録の両方が済んでいれば完了済みとする。
-        IF EXISTS
-        (
-            SELECT 1
-            FROM [dbo].[T_シートリーダ]
-            WHERE [bcd] = @qr
-              AND [記号] = 'SMX入庫'
-        )
-            SET @sheet_exists = 1;
-
-        IF @finished IS NOT NULL AND @sheet_exists = 1
+        IF @finished IS NOT NULL
         BEGIN
             SELECT @result = 3, @msg = 'すでに登録済です';
             RETURN 0;
@@ -121,6 +110,7 @@ BEGIN
     END;
 
     -- 品名と洗浄方法の初期値は品目マスタから取得する。
+    -- 該当マスタがなくても手入力できるよう、空文字のまま正常応答する。
     SELECT TOP (1)
         @item_name = ISNULL(CONVERT(varchar(255), [品名]), ''),
         @master_cleaning = ISNULL(CONVERT(varchar(50), [洗浄方法]), '')
@@ -128,12 +118,6 @@ BEGIN
     WHERE [親図面番号] = @parent_item
       AND [図番] = @child_item + '@' + @parent_item
     ORDER BY [ID];
-
-    IF @item_name = ''
-    BEGIN
-        SELECT @result = 2, @msg = '商品が違います';
-        RETURN 0;
-    END;
 
     SELECT @result = 0, @msg = 'OK';
     RETURN 0;

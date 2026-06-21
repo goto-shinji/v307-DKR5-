@@ -4,7 +4,7 @@ GO
 /*
   SMX入庫実績をT_シートリーダへ作成する。
   通常QRはBHTで入力した洗浄方法が0の場合に実行する。
-  $Ny QRはSmxNyuFinishで終了日時を更新した後、洗浄方法にかかわらず実行する。
+  $Ny QRで洗浄方法が0の場合は、終了日時更新と実績追加を同一トランザクションで行う。
 
   入力順はソケットサーバーINIのPARAM1～PARAM12と一致させること。
   戻り値は result、msg、ストアドRETURN値の順で出力される。
@@ -34,6 +34,7 @@ BEGIN
     DECLARE @seq_int int = TRY_CONVERT(int, @original_seq);
     DECLARE @source_destination varchar(255);
     DECLARE @source_child varchar(255);
+    DECLARE @source_id int;
     DECLARE @parent_item varchar(255);
     DECLARE @process_date varchar(255);
     DECLARE @finished varchar(30);
@@ -82,7 +83,7 @@ BEGIN
 
         IF @is_return = 1
         BEGIN
-            -- $Nyは終了更新済みの元レコードから親品目と処理日を取得する。
+            -- $Nyは未終了の元レコードから親品目と処理日を取得する。
             IF @seq_int IS NULL
             BEGIN
                 ROLLBACK TRANSACTION;
@@ -91,6 +92,7 @@ BEGIN
             END;
 
             SELECT TOP (1)
+                @source_id = [ID],
                 @source_destination = CONVERT(varchar(255), [出庫先CD]),
                 @source_child = CONVERT(varchar(255), [出庫品目]),
                 @parent_item = CONVERT(varchar(255), [上位品目]),
@@ -116,13 +118,17 @@ BEGIN
                 RETURN 0;
             END;
 
-            -- $Nyは必ずSmxNyuFinish成功後に登録する。
-            IF @finished IS NULL
+            IF @finished IS NOT NULL
             BEGIN
                 ROLLBACK TRANSACTION;
-                SELECT @result = 5, @msg = '終了日時が更新されていません';
+                SELECT @result = 3, @msg = 'すでに登録済です';
                 RETURN 0;
             END;
+
+            -- 洗浄方法0でも終了日時を更新し、後続INSERT失敗時は両方をロールバックする。
+            UPDATE [dbo].[T_SmxTrc]
+            SET [終了日時] = GETDATE()
+            WHERE [ID] = @source_id;
         END
         ELSE
         BEGIN
@@ -133,13 +139,6 @@ BEGIN
             IF @destination <> @allowed_destination
                OR NULLIF(LTRIM(RTRIM(@parent_item)), '') IS NULL
                OR NULLIF(LTRIM(RTRIM(@child_item)), '') IS NULL
-               OR NOT EXISTS
-                  (
-                      SELECT 1
-                      FROM [dbo].[T_data54]
-                      WHERE [親図面番号] = @parent_item
-                        AND [図番] = @child_item + '@' + @parent_item
-                  )
             BEGIN
                 ROLLBACK TRANSACTION;
                 SELECT @result = 2, @msg = '商品が違います';
@@ -147,8 +146,9 @@ BEGIN
             END;
         END;
 
-        -- 同じQRの再送は二重追加せず正常終了とする。
-        IF EXISTS
+        -- 元連番が一意な$Nyの再送は二重追加せず正常終了とする。
+        -- 通常QRは同じQRを別作業で再使用できるため、この重複判定を行わない。
+        IF @is_return = 1 AND EXISTS
         (
             SELECT 1
             FROM [dbo].[T_シートリーダ] WITH (UPDLOCK, HOLDLOCK)
@@ -157,7 +157,7 @@ BEGIN
         )
         BEGIN
             COMMIT TRANSACTION;
-            SELECT @result = 0, @msg = 'T_シートリーダ登録済みです';
+            SELECT @result = 0, @msg = '入庫を登録';
             RETURN 0;
         END;
 
@@ -174,7 +174,7 @@ BEGIN
         );
 
         COMMIT TRANSACTION;
-        SELECT @result = 0, @msg = 'T_シートリーダに登録しました';
+        SELECT @result = 0, @msg = '入庫を登録';
         RETURN 0;
     END TRY
     BEGIN CATCH

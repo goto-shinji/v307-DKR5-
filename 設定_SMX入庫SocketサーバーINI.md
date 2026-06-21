@@ -14,8 +14,8 @@
 | INI | `SQLSTR` | OUTPUT数 | 用途 |
 |---|---|---:|---|
 | `SmxNyuItem.ini` | `SmxNyuItem` | 6 | 品名・元レコード照会 |
-| `SmxNyuSheet.ini` | `SmxNyuSheet` | 2 | `T_シートリーダ`登録 |
-| `SmxNyuFinish.ini` | `SmxNyuFinish` | 2 | `T_SmxTrc.終了日時`更新 |
+| `SmxNyuSheet.ini` | `SmxNyuSheet` | 2 | 通常QRのシート登録、`$Ny`洗浄方法0の終了更新＋シート登録 |
+| `SmxNyuFinish.ini` | `SmxNyuFinish` | 2 | `$Ny`洗浄方法0以外の`T_SmxTrc.終了日時`更新 |
 
 全INIのINPUTは、`bhtid`、`bhtdate`、`bhttime`、`syaincd`、`nonyudate`、`qr`、`destination`、`original_seq`、`child_item`、`quantity`、`cleaning_method`、`biko`の順です。
 

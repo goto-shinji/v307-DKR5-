@@ -3,8 +3,7 @@ GO
 
 /*
   $Ny戻り品QRの元レコードへ終了日時を設定する。
-  洗浄方法の値にかかわらず先に本ストアドを実行し、正常終了後に
-  SmxNyuSheetを実行してT_シートリーダへ実績を作成する。
+  洗浄方法が0以外の場合に、T_SmxTrcの終了日時だけを更新する。
 
   入力順はソケットサーバーINIのPARAM1～PARAM12と一致させること。
   戻り値は result、msg、ストアドRETURN値の順で出力される。
@@ -49,10 +48,9 @@ BEGIN
         RETURN 0;
     END;
 
-    -- 洗浄方法0も有効。入力可能な非負整数であることだけを確認する。
-    IF @cleaning_int IS NULL OR @cleaning_int < 0
+    IF @cleaning_int IS NULL OR @cleaning_int = 0
     BEGIN
-        SELECT @result = 5, @msg = '洗浄方法を数字で指定してください';
+        SELECT @result = 5, @msg = '洗浄方法0以外を指定してください';
         RETURN 0;
     END;
 
@@ -95,11 +93,10 @@ BEGIN
             RETURN 0;
         END;
 
-        -- 再送時は正常扱いとし、後続のシートリーダ登録を続行できるようにする。
         IF @finished IS NOT NULL
         BEGIN
-            COMMIT TRANSACTION;
-            SELECT @result = 0, @msg = '終了日時は更新済みです';
+            ROLLBACK TRANSACTION;
+            SELECT @result = 3, @msg = 'すでに登録済です';
             RETURN 0;
         END;
 
@@ -108,7 +105,7 @@ BEGIN
         WHERE [ID] = @source_id;
 
         COMMIT TRANSACTION;
-        SELECT @result = 0, @msg = '終了日時を更新しました';
+        SELECT @result = 0, @msg = '入庫を登録';
         RETURN 0;
     END TRY
     BEGIN CATCH
