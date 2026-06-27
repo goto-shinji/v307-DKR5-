@@ -40,11 +40,12 @@ BEGIN
     DECLARE @source_destination varchar(255);
     DECLARE @source_child varchar(255);
     DECLARE @finished varchar(30);
+    DECLARE @item_found bit = 0;
 
     -- 途中で終了した場合にも、必ず判定可能な初期値を返す。
     SELECT
         @result = 9,
-        @msg = '品名の問い合わせに失敗しました',
+        @msg = '品名照会失敗',
         @parent_item = '',
         @item_name = '',
         @original_qty = '',
@@ -53,8 +54,8 @@ BEGIN
     -- 出庫先はWeb版SMX入庫と同じ許可値に限定する。
     IF @destination <> @allowed_destination
     BEGIN
-        SELECT @result = 2, @msg = '商品が違います';
-        RETURN 0;
+        SELECT @result = 6, @msg = '出庫先が違います';
+        RETURN @result;
     END;
 
     IF @is_return = 1
@@ -62,8 +63,8 @@ BEGIN
         -- $Nyは連番をキーに元の出庫実績を取得する。
         IF @seq_int IS NULL
         BEGIN
-            SELECT @result = 1, @msg = '元の連番が正しくありません';
-            RETURN 0;
+            SELECT @result = 1, @msg = '元連番不正';
+            RETURN @result;
         END;
 
         SELECT TOP (1)
@@ -78,21 +79,27 @@ BEGIN
 
         IF @source_destination IS NULL
         BEGIN
-            SELECT @result = 1, @msg = '元の連番が見つかりません';
-            RETURN 0;
+            SELECT @result = 1, @msg = '元連番なし';
+            RETURN @result;
         END;
 
         -- QRの出庫先・子品目が元レコードと一致することを確認する。
-        IF @destination <> @source_destination OR @child_item <> @source_child
+        IF @destination <> @source_destination
+        BEGIN
+            SELECT @result = 6, @msg = '出庫先が違います';
+            RETURN @result;
+        END;
+
+        IF @child_item <> @source_child
         BEGIN
             SELECT @result = 2, @msg = '商品が違います';
-            RETURN 0;
+            RETURN @result;
         END;
 
         IF @finished IS NOT NULL
         BEGIN
-            SELECT @result = 3, @msg = 'すでに登録済です';
-            RETURN 0;
+            SELECT @result = 3, @msg = '登録済';
+            RETURN @result;
         END;
     END
     ELSE
@@ -105,19 +112,26 @@ BEGIN
            OR NULLIF(LTRIM(RTRIM(@child_item)), '') IS NULL
         BEGIN
             SELECT @result = 2, @msg = '商品が違います';
-            RETURN 0;
+            RETURN @result;
         END;
     END;
 
     -- 品名と洗浄方法の初期値は品目マスタから取得する。
-    -- 該当マスタがなくても手入力できるよう、空文字のまま正常応答する。
     SELECT TOP (1)
+        @item_found = 1,
         @item_name = ISNULL(CONVERT(varchar(255), [品名]), ''),
         @master_cleaning = ISNULL(CONVERT(varchar(50), [洗浄方法]), '')
     FROM [dbo].[T_data54]
     WHERE [親図面番号] = @parent_item
       AND [図番] = @child_item + '@' + @parent_item
     ORDER BY [ID];
+
+    -- 通常QRは品目マスタに存在する商品だけを入庫対象とする。
+    IF @is_return = 0 AND @item_found = 0
+    BEGIN
+        SELECT @result = 1, @msg = '品名なし';
+        RETURN @result;
+    END;
 
     SELECT @result = 0, @msg = 'OK';
     RETURN 0;

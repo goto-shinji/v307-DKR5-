@@ -1234,9 +1234,9 @@ OBJECT INFORMATION
                                                   Offset     Size
     PRC                                           00000000   00000100
     REG                                           00000100   00003E12
-    PRD                                           00003F12   0001C3A6
+    PRD                                           00003F12   0001C2C0
 
 PRD INFORMATION
     [Filename]                                    Offset     Size
-    _Org\main.ob4                                 00000000   0001C3A6   (00000000)
-    [Total]                                                  0001C3A6
+    _Org\main.ob4                                 00000000   0001C2C0   (00000000)
+    [Total]                                                  0001C2C0

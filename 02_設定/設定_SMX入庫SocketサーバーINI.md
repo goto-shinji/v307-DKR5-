@@ -13,11 +13,12 @@
 
 | INI | `SQLSTR` | OUTPUT数 | 用途 |
 |---|---|---:|---|
+| `SmxNyu.ini` | `SmxNyu` | 2 | 登録本処理。通常QRは洗浄方法000でシート登録、000以外で`T_SmxTrc`追加。`$Ny`は消込＋シート登録 |
 | `SmxNyuItem.ini` | `SmxNyuItem` | 6 | 品名・元レコード照会 |
-| `SmxNyuSheet.ini` | `SmxNyuSheet` | 2 | 通常QRのシート登録、`$Ny`洗浄方法0の終了更新＋シート登録 |
-| `SmxNyuFinish.ini` | `SmxNyuFinish` | 2 | `$Ny`洗浄方法0以外の`T_SmxTrc.終了日時`更新 |
 
-全INIのINPUTは、`bhtid`、`bhtdate`、`bhttime`、`syaincd`、`nonyudate`、`qr`、`destination`、`original_seq`、`child_item`、`quantity`、`cleaning_method`、`biko`の順です。
+`SmxNyu.ini`のINPUTは既存の`Soc.YmdSend`形式で、`bhtid`、`bhtdate`、`bhttime`、`syaincd`、`dt`、`scandata`、`zno`、`rno`、`nyusuu`、`syusuu`、`zaisuu`、`biko`の順です。`biko`を洗浄方法（`000`形式）として扱います。
+
+`SmxNyuItem.ini`のINPUTは、`bhtid`、`bhtdate`、`bhttime`、`syaincd`、`nonyudate`、`qr`、`destination`、`original_seq`、`child_item`、`quantity`、`cleaning_method`、`biko`の順です。
 
 `original_seq`は`varchar`です。`$Ny`では元連番、通常QRではQR内の処理日を渡します。`biko`には登録時の親品目を渡します。
 
@@ -32,8 +33,16 @@ CONNECTSTR=Data Source=.;Initial Catalog=tksSmx;Integrated Security=True;
 | 判断 | 理由 |
 |---|---|
 | 既存SMX接続文字列を使用 | 同じDB・同じSocketサーバー経路で動作させるため |
-| 3コマンドでINPUT順を統一 | BHT側の共通送信関数を利用し、項目ずれを防ぐため |
+| `SmxNyu`は既存INPUT順を維持 | 提示電文および既存`Soc.YmdSend`送信形に合わせるため |
+| 品名照会と登録を分離 | `SmxNyuItem`で確認し、登録本処理は`SmxNyu`へ集約するため |
 | INIをCP932で保存 | Socketサーバーの既存INIおよび日本語値と文字コードを合わせるため |
+
+## 削除済みINI
+
+| 日時 | INI | 理由 |
+|---|---|---|
+| 2026-06-27 | `SmxNyuSheet.ini` | 登録本処理を`SmxNyu`へ集約したため |
+| 2026-06-27 | `SmxNyuFinish.ini` | 登録本処理を`SmxNyu`へ集約したため |
 
 ## 未対応・保留事項
 

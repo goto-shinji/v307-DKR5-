@@ -186,7 +186,7 @@ MenuSet=0
 MENUThreshold=10
 KEYCOMPATI=0
 [BHT]
-EXCPRG=                                                                                                                                                                                                                                                                              
+EXCPRG=                                                                                                                                                                                                                                                                                
 RESUME=0
 SYSMDFYFILE_BHT=B:_BHTOS.FN3
 SYSMDFYFILE_CU=B:C0NDN.DAT
